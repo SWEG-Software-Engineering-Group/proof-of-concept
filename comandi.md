@@ -3,6 +3,7 @@ DA DENTRO LA CARTELLA IN CUI VOGLIAMO CREARE IL PROGETTO
 npm install -g serverless
 
 serverless create --template aws-nodejs-typescript --path nomeAPIProgetto (crea un progetto serverless con un template aws con typescript in una cartella di nome "nomeAPIProgetto")
+
 -----------------
 
 DA DENTRO LA CARTELLA DEL PROGETTO
@@ -20,6 +21,7 @@ serverless offline (per runnare in locale il server http)
 LIBRERIA DA INSTALLARE
 npm i @aws-sdk/client-dynamodb
 npm i @aws-sdk/lib-dynamodb
+
 -----------------
 
 PER DEPLOYARE ONLINE
