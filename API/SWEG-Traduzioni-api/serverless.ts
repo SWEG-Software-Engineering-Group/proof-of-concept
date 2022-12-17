@@ -1,6 +1,7 @@
 import type { AWS } from '@serverless/typescript';
 
-import hello from '@functions/hello';
+import {hello,getTenant,createTenant,deleteTenant} from '@functions/index';
+
 
 const serverlessConfiguration: AWS = {
   service: 'sweg-traduzioni-api',
@@ -19,7 +20,7 @@ const serverlessConfiguration: AWS = {
     },
   },
   // import the function via paths
-  functions: { hello },
+  functions: { hello,getTenant,createTenant,deleteTenant },
   package: { individually: true },
   custom: {
     esbuild: {
