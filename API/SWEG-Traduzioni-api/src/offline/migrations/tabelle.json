@@ -1,0 +1,17 @@
+{
+    "Table":{
+        "TableName":"tenants",
+        "KeySchema":{
+            "AttributeName": "name",
+            "KeyType": "HASH"
+        },
+        "AttributeDefinitions":{
+            "AttributeName": "name",
+            "AttributeType":"S"
+        },
+        "ProvisionedThoughput":{
+             "ReadCapacityUnits":1,
+             "WriteCapacityUnits":1
+        }
+    }
+}

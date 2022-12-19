@@ -93,3 +93,25 @@ The project code base is mainly located within the `src` folder. This folder is 
 ### Advanced usage
 
 Any tsconfig.json can be used, but if you do, set the environment variable `TS_NODE_CONFIG` for building the application, eg `TS_NODE_CONFIG=./tsconfig.app.json npx serverless webpack`
+
+
+- `npm install --save-dev serverless-dynamodb-local`
+
+- `npm i @aws-sdk/lib-dynamodb`
+
+- `sls dynamodb install`
+
+- `sudo apt  install awscli`
+
+- `aws configure`
+  
+per far partire il database e le API usa
+- `sls dynamodb start`
+
+per far partire il server dynamodb esegui il comando una volta in una shell separata per non ricreare ogni volta il database
+
+- `sls dynamodb start`
+
+per provare usa sls offline dopo il start di dynamodb
+
+- `sls offline`
