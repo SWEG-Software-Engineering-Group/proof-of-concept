@@ -104,5 +104,14 @@ Any tsconfig.json can be used, but if you do, set the environment variable `TS_N
 - `sudo apt  install awscli`
 
 - `aws configure`
+  
+per far partire il database e le API usa
+- `sls dynamodb start`
 
-sls offline start
+per far partire il server dynamodb esegui il comando una volta in una shell separata per non ricreare ogni volta il database
+
+- `sls dynamodb start`
+
+per provare usa sls offline dopo il start di dynamodb
+
+- `sls offline`

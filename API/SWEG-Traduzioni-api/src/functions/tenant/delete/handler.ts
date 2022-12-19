@@ -1,6 +1,7 @@
 import type { ValidatedEventAPIGatewayProxyEvent } from '@libs/api-gateway';
 import { formatJSONResponse } from '@libs/api-gateway';
 import { middyfy } from '@libs/lambda';
+import { dbdeleteTenants } from 'src/services/dynamodb';
 
 import schema from './schema';
 
@@ -13,9 +14,16 @@ const deleteTenant: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (e
       ritorna errore.
     }
   */
-    return formatJSONResponse({
-      message: `tenant ${event.body.name}, cancellato con successo`,
-    });
+    try {
+      await dbdeleteTenants(event.body.name);
+      return formatJSONResponse({});
+    } catch (error) {
+      return formatJSONResponse(
+        {
+          error,
+        }
+      );
+    }
   
 };
 

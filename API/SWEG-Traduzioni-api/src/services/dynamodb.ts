@@ -52,6 +52,7 @@ const dbputTenant = async (tenant: Tenant) => {
     const params = {
         TableName: environment.dynamo.tenantTable.tableName,
         Item: tenant,
+        ConditionExpression: 'attribute_not_exists("name")'
     };
     try {
         const data = await ddbDocClient.send(new PutCommand(params));
@@ -74,7 +75,22 @@ const dbgetTenants = async ()  => {
         console.log("Error", err.stack);
         throw { err };
       }
-  };/*
+  };
+  const dbdeleteTenants = async (tenant: String)  => {
+    // Set the parameters.
+    const params: GetCommandInput = {
+        TableName: environment.dynamo.tenantTable.tableName,
+        Key: { name:tenant },
+      };
+      try {
+        const data = await ddbDocClient.send(new DeleteCommand(params));
+        console.log("Success - GET", data);
+      } catch (err) {
+        console.log("Error", err.stack);
+        throw { err, tenant };
+      }
+  };
+  /*
 const dbgetTenants=async() =>{
     return db.Tenants;
 }
@@ -91,5 +107,5 @@ const dbdeleteTenants=async(tenant: String) =>{
 export {
     dbputTenant,
     dbgetTenants,
-    //dbdeleteTenants
+    dbdeleteTenants
 };
