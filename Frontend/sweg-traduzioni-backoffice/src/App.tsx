@@ -1,6 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
+//import logo from './logo.svg'; //Sembra che non lo veda, in alternativa sotto il comando (dopo gli import ho messo il require)
 import './App.css';
+const logo = require("./logo.svg") as string;
 
 function App() {
   return (
