@@ -2,6 +2,7 @@ import { Button, Grid} from "@mui/material";
 import React from "react";
 import LanguagePicker from '../components/LanguagePicker';
 import TranslationCard from "../components/TranslationCard";
+import TranslationFolder from "../components/TranslationFolder";
 
 export function TranslationFSView() {
     //hooks
@@ -17,13 +18,16 @@ export function TranslationFSView() {
                 <Grid item xs={12} sm={2}>
                     <Button variant="outlined">Log out</Button>
                 </Grid>
-                <Grid container spacing={1} xs={12} sm={8}>
-                    <TranslationCard></TranslationCard>
-                    <TranslationCard></TranslationCard>
-                    <TranslationCard></TranslationCard>
-                    <TranslationCard></TranslationCard>
-                    <TranslationCard></TranslationCard>
-                    <TranslationCard></TranslationCard>
+                <Grid item xs={12} sm={8}>
+                    <Grid container spacing={1}>
+                        <TranslationFolder></TranslationFolder>
+                        <TranslationCard></TranslationCard>
+                        <TranslationCard></TranslationCard>
+                        <TranslationCard></TranslationCard>
+                        <TranslationCard></TranslationCard>
+                        <TranslationCard></TranslationCard>
+                        <TranslationCard></TranslationCard>
+                    </Grid>
                 </Grid>
 
                 <Grid item xs={12} sm={2}>

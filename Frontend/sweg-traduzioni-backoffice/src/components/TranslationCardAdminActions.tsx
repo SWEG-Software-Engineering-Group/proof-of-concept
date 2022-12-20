@@ -1,6 +1,6 @@
 import React from "react"
-import {CardActions, IconButton} from '@mui/material'
-import SettingsIcon from '@mui/icons-material/Settings';
+import {CardActions, IconButton, Typography} from '@mui/material'
+import EditIcon from '@mui/icons-material/Edit';
 
 export default function TranslationCardAdminActions() {
     //hooks
@@ -12,9 +12,10 @@ export default function TranslationCardAdminActions() {
 
     //ui
     return(
-    <CardActions>
-        <IconButton onClick={handleClick} sx={{marginLeft:'auto'}} aria-label="open admin settings">
-            <SettingsIcon/>
+    <CardActions sx={{marginLeft:'auto', padding:'0 .75rem .75rem'}}>
+        <Typography sx={{marginLeft:'auto', marginRight:'.5rem', color:'text.disabled'}}>Edit original text</Typography>
+        <IconButton onClick={handleClick} sx={{padding: 0}} aria-label="go to text editor for original text">
+            <EditIcon/>
         </IconButton>
     </CardActions>
     )
