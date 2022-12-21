@@ -7,9 +7,11 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-export default function TenantListItem() {
+export default function TenantListItem(props:any) {
     return(
         <ListItem
+            sx={{bgcolor: props.bgcolor}}
+            divider
             secondaryAction={
             <IconButton edge="end" aria-label="delete">
                 <DeleteIcon />

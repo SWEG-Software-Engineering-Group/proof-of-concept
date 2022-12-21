@@ -11,12 +11,17 @@ export function TranslationFSView(props:any) {
     if (typeof folderId == 'undefined') folderId = '0';
     
     //logics
-
+    const handleLanguageChange = (e: any) => {
+        
+    }
 
     //ui
     return (
-        <>
-            <Grid container columnSpacing= {5} minHeight={'100vh'} padding={'1.5em'}>
+        <div style={{
+            width:'85vw',
+            margin:'1.5rem auto',}}
+        >
+            <Grid container columnSpacing= {5} minHeight={'100vh'}>
                 <Grid item xs={12} sm={2}>
                     <Button variant="outlined">Log out</Button>
                 </Grid>
@@ -39,9 +44,9 @@ export function TranslationFSView(props:any) {
                 </Grid>
 
                 <Grid item xs={12} sm={2}>
-                    <LanguagePicker handleLanguageChange/>
+                    <LanguagePicker handleLanguageChange={handleLanguageChange}/>
                 </Grid>
             </Grid>
-        </>
+        </div>
     )
 } 

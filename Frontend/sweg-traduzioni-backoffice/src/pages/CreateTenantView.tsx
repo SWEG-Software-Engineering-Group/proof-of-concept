@@ -4,17 +4,17 @@ import { IconButton, Button, Grid, Box, TextField, Typography } from '@mui/mater
 import TenantList from '../components/TenantList';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import {Link} from 'react-router-dom';
-import ConfirmDiscardButtons from '../components/ConfirmDiscardButtons';
+import ConfirmCancelButtons from '../components/ConfirmCancelButtons';
 import LanguagePicker from '../components/LanguagePicker';
 
 export default function CreateTenantView() {
     const startingLanguage = 'English';
     const [tenantName, setTenantName] = useState<string>('');
+    const [defaultLanguage, setDefaultLanguage] = useState<string>(startingLanguage);
     const [adminUsername, setAdminUsername] = useState<string>('');
     const [adminSuffix, setAdminSuffix] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [confirmPassword, setConfirmPassword] = useState<string>('');
-    const [defaultLanguage, setDefaultLanguage] = useState<string>(startingLanguage);
 
 
     const handleSubmit = (e:any) =>{
@@ -23,11 +23,10 @@ export default function CreateTenantView() {
         console.log(
             {
                 tenantName,
-                adminUsername,
-                adminSuffix,
+                defaultLanguage,
+                admin: adminUsername + adminSuffix,
                 password,
                 confirmPassword,
-                defaultLanguage,
             });
     }
     const handleLanguageChange = (e : any) => {
@@ -50,68 +49,70 @@ export default function CreateTenantView() {
                         autoComplete="off"
                         onSubmit={handleSubmit}
                         >
-                            <div>
-                                <Typography variant={'h5'} margin={'0 0 1rem .5rem'}>Choose tenant name</Typography>
-                                <TextField
-                                required
-                                id="tenantName"
-                                label="Tenant name"
-                                fullWidth
-                                onChange={(e) => {
-                                        setTenantName(e.target.value);
-                                        setAdminSuffix(e.target.value)
-                                    }
+                        <div>
+                            <Typography variant={'h5'} margin={'0 0 1rem .5rem'}>Choose tenant name</Typography>
+                            <TextField
+                            required
+                            id="tenantName"
+                            label="Tenant name"
+                            fullWidth
+                            onChange={(e) => {
+                                    setTenantName(e.target.value);
+                                    setAdminSuffix(e.target.value)
                                 }
-                                />
-                            </div>
-                            <div>
-                                <Typography variant={'h5'} margin={'2rem 0 1rem .5rem'}>Choose default language</Typography>
-                                <LanguagePicker handleLanguageChange={handleLanguageChange} default={startingLanguage}/>
-                            </div>
-                    
-                            <div>
-                                <Typography variant={'h5'} margin={'2rem 0 1rem .5rem'}>Choose admin credentials</Typography>
-                                <Grid container columnSpacing={2} sx={{marginBottom:'1rem'}}>
-                                    <Grid item xs={12} sm={6}>
-                                        <TextField
-                                        required
-                                        id="adminUsername"
-                                        label="Admin username"
-                                        onChange={(e) => {setAdminUsername(e.target.value)}}
-                                        fullWidth                                        
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12} sm={6}>
-                                        <TextField
-                                        id="adminSuffix"
-                                        label="Admin suffix - read only"
-                                        InputProps={{
-                                            readOnly: true,
-                                        }}
-                                        value={adminSuffix}
-                                        fullWidth
-                                        />
-                                    </Grid>
+                            }
+                            />
+                        </div>
+                        <div>
+                            <Typography variant={'h5'} margin={'2rem 0 1rem .5rem'}>Choose default language</Typography>
+                            <LanguagePicker handleLanguageChange={handleLanguageChange} default={startingLanguage}/>
+                        </div>
+                
+                        <div>
+                            <Typography variant={'h5'} margin={'2rem 0 1rem .5rem'}>Choose admin credentials</Typography>
+                            <Grid container columnSpacing={2} sx={{marginBottom:'1rem'}}>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                    required
+                                    id="adminUsername"
+                                    label="Admin username"
+                                    onChange={(e) => {setAdminUsername(e.target.value)}}
+                                    fullWidth                                        
+                                    />
                                 </Grid>
-                                <TextField
-                                id="password"
-                                label="Password"
-                                type="password"
-                                fullWidth
-                                onChange={(e) => {setPassword(e.target.value)}}
-                                sx={{marginBottom:'1rem'}}
-                                />
-                                <TextField
-                                id="confirmPassword"
-                                label="Confirm password"
-                                type="password"
-                                fullWidth
-                                onChange={(e) => {setConfirmPassword(e.target.value)}}
-                                sx={{marginBottom:'1rem'}}
-                                />
-                            </div>       
-            <ConfirmDiscardButtons to='/superAdmin'/>
-                        </form>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                    required
+                                    id="adminSuffix"
+                                    label="Admin suffix - read only"
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+                                    value={adminSuffix}
+                                    fullWidth
+                                    />
+                                </Grid>
+                            </Grid>
+                            <TextField
+                            required
+                            id="password"
+                            label="Password"
+                            type="password"
+                            fullWidth
+                            onChange={(e) => {setPassword(e.target.value)}}
+                            sx={{marginBottom:'1rem'}}
+                            />
+                            <TextField
+                            id="confirmPassword"
+                            label="Confirm password"
+                            type="password"
+                            fullWidth
+                            onChange={(e) => {setConfirmPassword(e.target.value)}}
+                            sx={{marginBottom:'1rem'}}
+                            />
+                        </div>       
+                        <ConfirmCancelButtons to='/superAdmin'/>
+                    </form>
                 </Grid>
             </Grid>
             <Grid container wrap="nowrap" sx={{                

@@ -5,22 +5,22 @@ import TenantListItem from './TenantListItem';
 export default function TenantList(){
     return(
         <List
-        sx={{ width: '100%', maxWidth: 360, bgcolor: 'red' }}
+        sx={{ width: '100%', maxWidth: 360}}
         >
-            <TenantListItem />
-            <TenantListItem />
-            <TenantListItem />
-            <TenantListItem />
-            <TenantListItem />
-            <TenantListItem />
-            <TenantListItem />
-            <TenantListItem />
-            <TenantListItem />
-            <TenantListItem />
-            <TenantListItem />
-            <TenantListItem />
-            <TenantListItem />
-            <TenantListItem />
+            <TenantListItem bgcolor='primary.main'/>
+            <TenantListItem bgcolor='secondary.main'/>
+            <TenantListItem bgcolor='primary.main'/>
+            <TenantListItem bgcolor='secondary.main'/>
+            <TenantListItem bgcolor='primary.main'/>
+            <TenantListItem bgcolor='secondary.main'/>
+            <TenantListItem bgcolor='primary.main'/>
+            <TenantListItem bgcolor='secondary.main'/>
+            <TenantListItem bgcolor='primary.main'/>
+            <TenantListItem bgcolor='secondary.main'/>
+            <TenantListItem bgcolor='primary.main'/>
+            <TenantListItem bgcolor='secondary.main'/>
+            <TenantListItem bgcolor='primary.main'/>
+            <TenantListItem bgcolor='secondary.main'/>
         </List>
     )
 }

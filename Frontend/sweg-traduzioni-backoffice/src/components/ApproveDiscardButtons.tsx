@@ -2,7 +2,7 @@ import React from 'react';
 import {Grid, Button} from '@mui/material';
 import { Link } from 'react-router-dom';
 
-export default function ConfirmDiscardButtons(props: any) {
+export default function ApproveDiscardButtons(props: any) {
 //hooks
 
 //logics
@@ -11,10 +11,10 @@ export default function ConfirmDiscardButtons(props: any) {
     return(
         <Grid container sx={{padding:'0 .5rem', justifyContent:'space-between'}}>
             <Grid item>
-                <Link to={props.to}><Button color='error' variant='outlined'>Discard</Button></Link>
+                <Button onClick={props.handleDiscard} color='error' variant='outlined'>Discard</Button>
             </Grid>
             <Grid item>
-                <Button type='submit' variant='contained'>Confirm</Button>
+                <Button onClick={props.handleAccept} variant='contained'>Approve</Button>
             </Grid>
         </Grid>
     )

@@ -8,8 +8,11 @@ import {Link} from 'react-router-dom';
 export default function SuperAdminView() {
     const [tenants, setTenants] = useState<Tenant[]>();
     return (
-        <>
-            <Grid container columnSpacing= {5} minHeight={'100vh'}padding={'1.5em'}>
+        <div style={{
+            width:'85vw',
+            margin:'1.5rem auto',}}
+        >
+            <Grid container columnSpacing= {5} minHeight={'100vh'}>
                 <Grid item xs={12} sm={2} >
                     <Button variant="outlined" sx={{display:'block', position:'sticky', zIndex:'20', top:'1.5rem'}}>Log out</Button>
                 </Grid>
@@ -18,12 +21,12 @@ export default function SuperAdminView() {
                 </Grid>
                 <Grid item xs={12} sm={2}>
                     <Link to='/superAdmin/createTenant'>
-                        <IconButton sx={{padding: 0, position:'fixed', bottom:'2rem', scale:'200%', }} aria-label="go to text editor for original text">
+                        <IconButton sx={{padding: 0, position:'fixed', bottom:'2rem', right:'2rem', scale:'200%', }} aria-label="go to text editor for original text">
                             <AddCircleOutlineIcon fontSize='large'/>
                         </ IconButton>
                     </Link>
                 </Grid>
             </Grid>
-        </>
+        </div>
     )
 }

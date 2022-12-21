@@ -6,6 +6,7 @@ import TranslationCard from "../components/TranslationCard";
 import TranslationView from "../pages/TranslationView";
 import SuperAdminView from "../pages/SuperAdminView";
 import CreateTenantView from "../pages/CreateTenantView"
+import AdminView from "../pages/AdminView";
 export default function Router() {
     return(
         <BrowserRouter>
@@ -18,6 +19,8 @@ export default function Router() {
 
                 <Route path="/superAdmin/" element={<SuperAdminView/>}/>;
                 <Route path="/superAdmin/createTenant" element={<CreateTenantView/>}/>;
+
+                <Route path="/admin/" element={<AdminView/>}/>;
             </Routes>
         </BrowserRouter>
     )

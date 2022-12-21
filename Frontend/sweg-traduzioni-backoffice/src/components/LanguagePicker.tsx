@@ -32,10 +32,10 @@ export default function LanguagePicker(props : any) {
                     setLanguage(e.target.value);
                 }}
             >
-                <MenuItem value={'English'}>English <Typography aria-hidden='true'>&nbsp;🇬🇧/🇺🇲</Typography></MenuItem>
-                <MenuItem value={'Italian'}>Italiano <Typography aria-hidden='true'>&nbsp;🇮🇹</Typography></MenuItem>
-                <MenuItem value={'Japanese'}>日本語 <Typography aria-hidden='true'>&nbsp;🇯🇵</Typography></MenuItem>
-                <MenuItem value={'Chinese'}>中文 <Typography aria-hidden='true'>&nbsp;🇨🇳</Typography></MenuItem>
+                <MenuItem value={'English'}>English <Typography display={'inline'} aria-hidden='true'>&nbsp;🇬🇧/🇺🇲</Typography></MenuItem>
+                <MenuItem value={'Italian'}>Italiano <Typography display={'inline'} aria-hidden='true'>&nbsp;🇮🇹</Typography></MenuItem>
+                <MenuItem value={'Japanese'}>日本語 <Typography display={'inline'} aria-hidden='true'>&nbsp;🇯🇵</Typography></MenuItem>
+                <MenuItem value={'Chinese'}>中文 <Typography display={'inline'} aria-hidden='true'>&nbsp;🇨🇳</Typography></MenuItem>
             </Select>
         </FormControl>
     )

@@ -1,7 +1,7 @@
 import { Card, TextField, Grid, Button, Typography, List, ListItem} from '@mui/material';
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import ConfirmDiscardButtons from '../components/ConfirmDiscardButtons'
+import ConfirmCancelButtons from '../components/ConfirmCancelButtons'
 import { display } from '@mui/system';
 
 export default function TranslationView(){
@@ -74,7 +74,7 @@ export default function TranslationView(){
                 <Grid item xs={12}>
                     <TextField fullWidth multiline rows={10} label="Translation"></TextField>
                 </Grid>
-                <ConfirmDiscardButtons to='/todo'/>
+                <ConfirmCancelButtons to='/todo'/>
             </Grid>
         </div>
     )
