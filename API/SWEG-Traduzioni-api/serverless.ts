@@ -1,6 +1,15 @@
 import type { AWS } from '@serverless/typescript';
-import { hello, getTenant, createTenant, deleteTenant } from '@functions/index';
-import { environment } from 'src/environement/environement';
+import {
+  hello,
+  getTenant,
+  createTenant,
+  deleteTenant,
+  newUser,
+  getUsers,
+  getText,
+  insertText
+}
+  from '@functions/index'; import { environment } from 'src/environement/environement';
 
 
 const serverlessConfiguration: AWS = {
@@ -40,10 +49,66 @@ const serverlessConfiguration: AWS = {
           ],
         },
       },
+      userTable: {
+        Type: 'AWS::DynamoDB::Table',
+        Properties: {
+          TableName: environment.dynamo.userData.tableName,
+          BillingMode: 'PAY_PER_REQUEST',
+          AttributeDefinitions: [
+            {
+              AttributeName: 'username',
+              AttributeType: 'S',
+            },
+          ],
+          KeySchema: [
+            {
+              AttributeName: 'username',
+              KeyType: 'HASH',
+            },
+          ],
+        },
+      },
+      textTable: {
+        Type: 'AWS::DynamoDB::Table',
+        Properties: {
+          TableName: environment.dynamo.textTable.tableName,
+          BillingMode: 'PAY_PER_REQUEST',
+          AttributeDefinitions: [
+            {
+              AttributeName: 'tenantName',
+              AttributeType: 'S',
+            },
+            {
+              AttributeName: 'language',
+              AttributeType: 'S',
+            },
+          ],
+          KeySchema: [
+            {
+              AttributeName: 'tenantName',
+              KeyType: 'HASH',
+            },
+            {
+              AttributeName: 'language',
+              KeyType: 'RANGE',
+            },
+          ],
+        },
+      },
     },
   },
   // import the function via paths
-  functions: { hello, getTenant, createTenant, deleteTenant },
+  functions:
+  {
+    hello,
+    getTenant,
+    createTenant,
+    deleteTenant,
+    newUser,
+    getUsers,
+    getText,
+    insertText,
+  },
   package: { individually: true },
   custom: {
     esbuild: {
@@ -62,10 +127,7 @@ const serverlessConfiguration: AWS = {
       start: {
         port: 8000,
         inmemory: true,
-        migrate:true,
-      },
-      migration:{
-        dir:"offline/migrations"
+        migrate: true,
       }
     }
   },
