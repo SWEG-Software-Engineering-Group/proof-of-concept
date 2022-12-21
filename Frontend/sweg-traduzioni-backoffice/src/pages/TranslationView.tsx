@@ -8,7 +8,8 @@ export default function TranslationView(){
     //hooks
     const [text, setText] = useState<string>('')
     const [links, setLinks] = useState<string[]>([])
-    const {translationId} = useParams();
+    const {translationId, language} = useParams();
+    
     //logics
     
     //ui
@@ -27,7 +28,7 @@ export default function TranslationView(){
                 <Grid item xs={12} sm={6}>
                     <Card sx={{padding:'1.5rem', height:'10rem'}}>
                         <Typography sx={{color:'primary.main'}} variant='h6'>Links</Typography>
-                        <List sx={{maxHeight:'100%', overflow:'scroll'}}>
+                        <List sx={{maxHeight:'70%', overflow:'scroll'}}>
                             <ListItem>
                                 <Link to=''>Let's go somewhere outside this website</Link>
                             </ListItem>

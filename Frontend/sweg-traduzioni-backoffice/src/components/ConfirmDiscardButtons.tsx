@@ -9,12 +9,12 @@ export default function ConfirmDiscardButtons(props: any) {
 
 //ui
     return(
-        <Grid container sx={{margin:'auto', justifyContent:'space-between'}}>
+        <Grid container sx={{padding:'0 .5rem', justifyContent:'space-between'}}>
             <Grid item>
                 <Link to={props.to}><Button color='error' variant='outlined'>Discard</Button></Link>
             </Grid>
             <Grid item>
-                <Button variant='contained'>Confirm</Button>
+                <Button type='submit' variant='contained'>Confirm</Button>
             </Grid>
         </Grid>
     )

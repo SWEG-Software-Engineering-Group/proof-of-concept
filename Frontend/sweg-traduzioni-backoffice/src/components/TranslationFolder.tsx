@@ -13,14 +13,14 @@ const {folderId} = props;
 
 //ui
     return(
-        <Grid item xs={12} sm={4} sx={{}}>  
+        <Grid item xs={6} sm={3} sx={{}}>  
             <Card sx={{bgcolor: 'primary.main'}}>
-                <Typography>{folderId}</Typography>
-                <Link to="/" style={{textDecoration:"none"}}>
+                <Link to={`/todo/${folderId}`} style={{textDecoration:"none"}}>
                 <CardActionArea>
                     <CardContent>
-                        <Typography variant="h4" maxHeight={'7em'} sx={{overflow:'scroll', color: 'text.secondary', minHeight:'7rem'}}>
-                            Header section texts
+                        <Typography>{folderId}</Typography>
+                        <Typography variant="h6" sx={{overflow:'scroll', color: 'text.secondary', minHeight:'4rem', maxHeight:'4rem'}}>
+                            Header section texts blah blah asjda
                         </Typography>
                     </CardContent>
                     <Typography sx={{color: 'text.disabled', margin:0, padding:'0 1rem'}}>Folder</Typography>

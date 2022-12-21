@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import {FormControl, Select, MenuItem, InputLabel, SelectChangeEvent, Typography} from "@mui/material";
 
 
-export default function LanguagePicker() {
+export default function LanguagePicker(props : any) {
     //hooks
-    const [language, setLanguage] = useState<string>('English');
+    const [language, setLanguage] = useState<string>(props.default);
 
     //logics
     const handleChange = (event: SelectChangeEvent) => {
@@ -20,14 +20,17 @@ export default function LanguagePicker() {
 
     //ui
     return (
-        <FormControl fullWidth>
+        <FormControl fullWidth sx={{margin:".5rem"}}>
             <InputLabel id="language-elect-label">Language</InputLabel>
             <Select
                 labelId="language-select-label"
                 id="language-select"
                 value={language}
                 label="Language"
-                onChange={handleChange}
+                onChange = {(e) => {
+                    props.handleLanguageChange(e);
+                    setLanguage(e.target.value);
+                }}
             >
                 <MenuItem value={'English'}>English <Typography aria-hidden='true'>&nbsp;🇬🇧/🇺🇲</Typography></MenuItem>
                 <MenuItem value={'Italian'}>Italiano <Typography aria-hidden='true'>&nbsp;🇮🇹</Typography></MenuItem>
