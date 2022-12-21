@@ -21,7 +21,7 @@ export default function TranslationView(){
                 <Grid item xs={12} sm={6}>
                     <Card sx={{padding:'1.5rem', height:'10rem'}}>
                         <Typography sx={{color:'primary.main'}} variant='h6'>Comments</Typography>
-                        <Typography sx={{overflow:'scroll'}}>This is a comment... Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium laboriosam officiis dolore ipsum tenetur. Ex nam quod blanditiis earum fuga.</Typography>
+                        <Typography sx={{maxHeight:'100%', overflow:'scroll'}}>This is a comment... Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium laboriosam officiis dolore ipsum tenetur. Ex nam quod blanditiis earum fuga.</Typography>
                     </Card>
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -73,7 +73,7 @@ export default function TranslationView(){
                 <Grid item xs={12}>
                     <TextField fullWidth multiline rows={10} label="Translation"></TextField>
                 </Grid>
-                <ConfirmDiscardButtons/>
+                <ConfirmDiscardButtons to='/todo'/>
             </Grid>
         </div>
     )

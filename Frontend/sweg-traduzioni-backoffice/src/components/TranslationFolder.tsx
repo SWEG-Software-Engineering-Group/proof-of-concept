@@ -4,17 +4,18 @@ import {Link} from 'react-router-dom';
 import TranslationFolderAdminActions from "./TranslationFolderAdminActions";
 import { Palette } from "@mui/icons-material";
 
-export default function TranslationFolder() {
+export default function TranslationFolder(props:any) {
 //hooks
 const [title, setTitle] = useState<string>('lorem ipsum');
 const [userType, setUserType] = useState<string>('admin');
-
+const {folderId} = props;
 //logics
 
 //ui
     return(
-        <Grid item xs={12} sm={4} sx={{}}>            
+        <Grid item xs={12} sm={4} sx={{}}>  
             <Card sx={{bgcolor: 'primary.main'}}>
+                <Typography>{folderId}</Typography>
                 <Link to="/" style={{textDecoration:"none"}}>
                 <CardActionArea>
                     <CardContent>

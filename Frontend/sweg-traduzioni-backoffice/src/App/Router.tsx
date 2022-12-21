@@ -10,7 +10,8 @@ export default function Router() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<TranslationCard />}/>;
-                <Route path="/todo" element={<TranslationFSView />}/>;
+                <Route path="/todo/" element={<TranslationFSView/>}/>;
+                <Route path="/todo/:folderId" element={<TranslationFSView/>}/>;
                 <Route path="/todo/write/:translationId" element={<TranslationView/>}/>;
                 <Route path="/todo/edit/:translationId" element={<TranslationView/>}/>;
             </Routes>
