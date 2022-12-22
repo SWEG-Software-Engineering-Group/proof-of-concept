@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card, Grid, Button, Typography, IconButton, TextField} from '@mui/material';
-import ApproveDiscardButtons from "./ApproveDiscardButtons";
+import ApproveDiscardButtons from "../ApproveDiscardButtons";
 
 export default function NewFolderModal(props:any) {
 
@@ -9,7 +9,8 @@ export default function NewFolderModal(props:any) {
 
     const handleDiscard = () =>{
         //resetta testo nell'input field
-        props.closeModal();//chiude il modal
+        setFolderName('')
+        props.closeModal();
     }
     const handleAccept = () =>{
         //chiamate api per creare la cartella / categoria
@@ -28,7 +29,7 @@ export default function NewFolderModal(props:any) {
                 <Typography variant={'h4'}>Enter a name for a new folder / catergory</Typography>
             </Grid>
             <Grid item xs={12}>
-                <TextField fullWidth >
+                <TextField fullWidth onChange={(e)=> setFolderName(e.target.value)} value={folderName}>
                 </TextField>
             </Grid>
             <ApproveDiscardButtons handleDiscard={handleDiscard} handleAccept={handleAccept}/>

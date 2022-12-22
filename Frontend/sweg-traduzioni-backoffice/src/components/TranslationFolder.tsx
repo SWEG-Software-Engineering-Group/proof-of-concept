@@ -8,12 +8,12 @@ export default function TranslationFolder(props:any) {
 //hooks
 const [title, setTitle] = useState<string>('lorem ipsum');
 const [userType, setUserType] = useState<string>('admin');
-const {folderId} = props;
+const {folderId} : {folderId : string} = props;
 //logics
 
 //ui
     return(
-        <Grid item xs={6} sm={3} sx={{}}>  
+        <Grid item xs={6} sm={3}>  
             <Card sx={{bgcolor: 'primary.main'}}>
                 <Link to={`/todo/${folderId}`} style={{textDecoration:"none"}}>
                 <CardActionArea>
@@ -26,7 +26,7 @@ const {folderId} = props;
                     <Typography sx={{color: 'text.disabled', margin:0, padding:'0 1rem'}}>Folder</Typography>
                 </CardActionArea>
                 </Link>
-                {userType == 'admin' ? <TranslationFolderAdminActions/> : null}
+                {userType == 'admin' ? <TranslationFolderAdminActions folderId={folderId}/> : null}
             </Card>
         </Grid>
     )

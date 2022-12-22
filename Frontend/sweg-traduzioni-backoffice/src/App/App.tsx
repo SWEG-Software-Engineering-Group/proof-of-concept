@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../assets/images/logo.svg';
 import '../assets/css/App.css';
-import { createTheme ,ThemeProvider } from '@mui/material';
+import { Button, createTheme ,ThemeProvider } from '@mui/material';
 import Router from './Router';
 import { Box } from '@mui/system';
 
@@ -11,11 +11,20 @@ const darkTheme = createTheme({
   },
 });
 
+
+
 function App() {
   return (
-    //<ThemeProvider theme={darkTheme}>
+    <>
+    <div style={{display:'flex', justifyContent:'space-evenly'}}>
+      <Button variant='contained' href='/todo'>USER MAIN PAGE</Button>
+      <Button variant='contained' href='/superAdmin'>SUPERADMIN MAIN PAGE</Button>
+      <Button variant='contained' href='/admin'>ADMIN MAIN PAGE</Button>
+    </div>
+    {/* <ThemeProvider theme={darkTheme}> */}
       <Router/>
-    //</ThemeProvider>
+    {/* </ThemeProvider> */}
+    </>
   );
 }
 

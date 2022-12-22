@@ -7,6 +7,10 @@ import TranslationView from "../pages/TranslationView";
 import SuperAdminView from "../pages/SuperAdminView";
 import CreateTenantView from "../pages/CreateTenantView"
 import AdminView from "../pages/AdminView";
+import FolderSettingsView from "../pages/FolderSettingsView";
+import TenantSettingsView from "../pages/TenantSettingsView";
+import TenantUsersView from "../pages/TenantUsersView";
+import CreateTenantUserView from "../pages/CreateTenantUserView";
 export default function Router() {
     return(
         <BrowserRouter>
@@ -21,6 +25,11 @@ export default function Router() {
                 <Route path="/superAdmin/createTenant" element={<CreateTenantView/>}/>;
 
                 <Route path="/admin/" element={<AdminView/>}/>;
+                <Route path="/admin/folderSettings/:folderId" element={<FolderSettingsView/>}/>;
+
+                <Route path="/admin/tenantSettings/" element={<TenantSettingsView/>}/>;
+                <Route path="/admin/tenantSettings/users" element={<TenantUsersView/>}/>;
+                <Route path="/admin/tenantSettings/users/createUser" element={<CreateTenantUserView/>}/>;
             </Routes>
         </BrowserRouter>
     )

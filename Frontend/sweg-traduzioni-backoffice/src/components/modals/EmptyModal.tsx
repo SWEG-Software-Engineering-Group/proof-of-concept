@@ -1,7 +1,5 @@
 import React from "react";
 import { Card, Grid, Button, Typography, IconButton} from '@mui/material';
-import { Link } from "react-router-dom";
-import ApproveDiscardButtons from "./ApproveDiscardButtons";
 import CloseIcon from '@mui/icons-material/Close';
 
 export default function EmptyModal(props:any) {

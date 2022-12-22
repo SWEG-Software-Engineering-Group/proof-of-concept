@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Grid, Button, Typography, IconButton} from '@mui/material';
-import ApproveDiscardButtons from "./ApproveDiscardButtons";
+import ApproveDiscardButtons from "../ApproveDiscardButtons";
 
 export default function PendingTranslationsModal(props:any) {
 

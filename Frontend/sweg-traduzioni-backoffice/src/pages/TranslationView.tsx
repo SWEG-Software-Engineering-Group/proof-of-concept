@@ -1,6 +1,6 @@
 import { Card, TextField, Grid, Button, Typography, List, ListItem} from '@mui/material';
 import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import ConfirmCancelButtons from '../components/ConfirmCancelButtons'
 import { display } from '@mui/system';
 
@@ -10,13 +10,25 @@ export default function TranslationView(){
     const [links, setLinks] = useState<string[]>([])
     const {translationId, language} = useParams();
     
+    const navigate = useNavigate();
+
     //logics
-    
+    const confirmTranslation = (e:any) =>{
+        e.preventDefault();
+        //aggiungi traduzione al db
+        console.log('traduzione aggiunta al db!')
+        navigate(-1);
+    }
+
+
     //ui
     return(
-        <div style={{
+        <form style={{
             width:'75vw',
             margin:'2rem auto',}}
+            noValidate
+            autoCapitalize="off"
+            onSubmit={(e) => confirmTranslation(e)}
         >
             <Grid container spacing={2} sx={{marginBottom:'2rem'}}>
                 <Grid item xs={12} sm={6}>
@@ -76,6 +88,6 @@ export default function TranslationView(){
                 </Grid>
                 <ConfirmCancelButtons to='/todo'/>
             </Grid>
-        </div>
+        </form>
     )
 }

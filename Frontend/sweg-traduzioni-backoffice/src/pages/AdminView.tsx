@@ -3,11 +3,12 @@ import {Grid, Button, Card, CardActionArea, CardContent, Typography} from "@mui/
 import {Link} from "react-router-dom";
 import { IconButton } from "@mui/material";
 import Settings from "@mui/icons-material/Settings";
-import PendingTranslationsModal from "../components/PendingTranslationsModal";
+import PendingTranslationsModal from "../components/modals/PendingTranslationsModal";
 import { display } from "@mui/system";
 import displayOnePendingTranslation from '../functions/displayOnePendingTranslation'
-import EmptyModal from "../components/EmptyModal";
-import NewFolderModal from "../components/NewFolderModal";
+import EmptyModal from "../components/modals/EmptyModal";
+import NewFolderModal from "../components/modals/NewFolderModal";
+import NewContentModal from "../components/modals/NewContentModal";
 export default function AdminView()
 {
     const [pending, setPending] = useState<string[]>(['a', 'b', 'c']);  //string[] id delle traduzioni da controllare
@@ -70,13 +71,14 @@ export default function AdminView()
                     </Link>
                 </Grid>
             </Grid>
-            <EmptyModal open={visibleModal} closeModal={closeModal} openModal={openModal} specificModal={<PendingTranslationsModal closeModal={closeModal} openModal={openModal}/>}></EmptyModal>
+            <EmptyModal open={visibleModal} closeModal={closeModal} openModal={openModal} specificModal={<NewContentModal closeModal={closeModal} openModal={openModal}/>}></EmptyModal>
         </div>
     )
 }
+
+
+//<EmptyModal open={visibleModal} closeModal={closeModal} openModal={openModal} specificModal={<PendingTranslationsModal closeModal={closeModal} openModal={openModal}/>}></EmptyModal>
 //<EmptyModal open={visibleModal} closeModal={closeModal} openModal={openModal} specificModal={<NewFolderModal closeModal={closeModal} openModal={openModal}/>}></EmptyModal>
-
-
 
 
 

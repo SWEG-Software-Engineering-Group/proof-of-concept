@@ -8,7 +8,7 @@ export default function TranslationCard(props: any) {
 //hooks
 const [text, setText] = useState<string>('lorem ipsum');
 const [userType, setUserType] = useState<string>('admin');
-const {translationId} = props;
+const {translationId} : {translationId : string} = props;
 
 //logics
 
@@ -27,7 +27,7 @@ const {translationId} = props;
                     <Typography sx={{color: 'text.disabled', margin:0, padding:'0 1rem'}}>Text</Typography>
                 </CardActionArea>
                 </Link>
-                {userType == 'admin' ? <TranslationCardAdminActions/>: null}
+                {userType == 'admin' ? <TranslationCardAdminActions translationId={translationId}/>: null}
             </Card>
         </Grid>
     )

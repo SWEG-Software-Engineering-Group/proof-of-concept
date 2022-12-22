@@ -2,7 +2,7 @@ import React from 'react';
 import {Grid, Button} from '@mui/material';
 import { Link } from 'react-router-dom';
 
-export default function ConfirmDiscardButtons(props: any) {
+export default function ConfirmCancelButtons(props: any) {
 //hooks
 
 //logics

@@ -1,8 +1,9 @@
 import React from "react"
 import {CardActions, IconButton} from '@mui/material'
 import SettingsIcon from '@mui/icons-material/Settings';
+import { Link } from "react-router-dom";
 
-export default function TranslationCardAdminActions() {
+export default function TranslationCardAdminActions({folderId} : {folderId:string}) {
     //hooks
 
     //logics
@@ -13,9 +14,11 @@ export default function TranslationCardAdminActions() {
     //ui
     return(
         <CardActions sx={{marginLeft:'auto', padding:'0 .75rem .75rem'}}>
-        <IconButton onClick={handleClick} sx={{marginLeft:'auto', padding:0}} aria-label="open admin settings">
-            <SettingsIcon/>
-        </IconButton>
+        <Link to={`../admin/folderSettings/${folderId}`} style={{marginLeft:'auto', padding:0}}>
+            <IconButton onClick={handleClick} aria-label="open admin settings">
+                <SettingsIcon/>
+            </IconButton>
+        </Link>
     </CardActions>
     )
 }
