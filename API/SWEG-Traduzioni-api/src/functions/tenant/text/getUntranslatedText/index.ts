@@ -6,8 +6,8 @@ export default {
   events: [
     {
       http: {
-        method: 'post',
-        path: '{tenant}/insertText',
+        method: 'get',
+        path: '{tenant}/untraslated/{language}',
         request: {
           schemas: {
             'application/json': schema,

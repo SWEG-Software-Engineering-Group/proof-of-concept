@@ -1,12 +1,10 @@
 import type { ValidatedEventAPIGatewayProxyEvent } from '@libs/api-gateway';
 import { formatJSONResponse } from '@libs/api-gateway';
 import { middyfy } from '@libs/lambda';
-import { dbputOriginalText } from 'src/services/dynamodbTexts';
-import { Text } from 'src/types/Text';
-
+import { dbgetTextuntranslated } from 'src/services/dynamodbTexts';
 import schema from './schema';
 
-const insertText: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
+const getTextuntranslated: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
   //TODO rimuovere il valore dal database e ritornare un valore booleano.
   /*
     try(await db.deleteTenant(event.body.name)){
@@ -16,8 +14,10 @@ const insertText: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (eve
     }
   */
     try {
-      await dbputOriginalText(event.pathParameters.tenant,event.body);
-      return formatJSONResponse({message:"testo inserito con successo"});
+      const tenant = event.pathParameters.tenant as string;
+      const language = event.pathParameters.language as string;
+      const texts = await dbgetTextuntranslated(tenant,language);
+      return formatJSONResponse({texts});
     } catch (error) {
       return formatJSONResponse(
         {
@@ -28,4 +28,4 @@ const insertText: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (eve
   
 };
 
-export const main = middyfy(insertText);
+export const main = middyfy(getTextuntranslated);

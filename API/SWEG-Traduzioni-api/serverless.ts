@@ -7,7 +7,11 @@ import {
   newUser,
   getUsers,
   getText,
-  insertText
+  insertText,
+  getTextuntranslated,
+  singleTenantinfo,
+  getTextlang,
+  inserttranslation
 }
   from '@functions/index'; import { environment } from 'src/environement/environement';
 
@@ -108,6 +112,10 @@ const serverlessConfiguration: AWS = {
     getUsers,
     getText,
     insertText,
+    getTextuntranslated,
+    singleTenantinfo,
+    getTextlang,
+    inserttranslation
   },
   package: { individually: true },
   custom: {

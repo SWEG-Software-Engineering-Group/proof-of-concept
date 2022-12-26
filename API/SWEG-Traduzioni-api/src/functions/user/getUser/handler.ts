@@ -1,17 +1,20 @@
 import type { ValidatedEventAPIGatewayProxyEvent } from '@libs/api-gateway';
 import { formatJSONResponse } from '@libs/api-gateway';
 import { middyfy } from '@libs/lambda';
-import {dbgetUsers } from 'src/services/dynamodb';
+import {dbgetUsers } from 'src/services/dynamodbUsers';
 
 import schema from './schema';
 
-const createTenant: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
+const currentUser: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event,context) => {
   //prova a metterlo nel database
   // se successo ritorna ok altrimenti ritorna errore.
   //aggiunge il tenant al database
   try {
-    let tenants=await dbgetUsers();
-  return formatJSONResponse({tenants});
+    const username = event.requestContext.authorizer.claims.sub;
+    const user = await dbgetUsers(username);
+    return JSON.stringify(user);
+    let users=await dbgetUsers();
+  return formatJSONResponse({users});
   } catch (e) {
     return formatJSONResponse(
       {
@@ -23,4 +26,4 @@ const createTenant: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (e
 
 };
 
-export const main = middyfy(createTenant);
+export const main = middyfy(currentUser);

@@ -1,8 +1,12 @@
 export { default as hello } from './hello';
-export { default as getTenant } from './tenant/gettenant';
+export { default as getTenant } from './tenant/gettenants';
 export { default as createTenant } from './tenant/createtenant';
 export { default as deleteTenant } from './tenant/delete';
 export { default as newUser } from './user/newUser';
 export { default as getUsers } from './user/getUser';
-export { default as getText } from './tenant/text/getText';
+export { default as getText } from './tenant/text/getTextoriginal';
+export { default as getTextlang } from './tenant/text/getTextLanguage';
 export { default as insertText } from './tenant/text/insertoriginaltext';
+export { default as inserttranslation } from './tenant/text/insertTranslation';
+export { default as getTextuntranslated } from './tenant/text/getUntranslatedText';
+export { default as singleTenantinfo } from './tenant/getTenantInfo';

@@ -7,7 +7,7 @@ export default {
     {
       http: {
         method: 'post',
-        path: '{tenant}/insertText',
+        path: '{tenant}/{language}/translate',
         request: {
           schemas: {
             'application/json': schema,
