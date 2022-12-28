@@ -5,16 +5,13 @@ import {dbgetUsers } from 'src/services/dynamodbUsers';
 
 import schema from './schema';
 
-const currentUser: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event,context) => {
+const createTenant: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
   //prova a metterlo nel database
   // se successo ritorna ok altrimenti ritorna errore.
   //aggiunge il tenant al database
   try {
-    const username = event.requestContext.authorizer.claims.sub;
-    const user = await dbgetUsers(username);
-    return JSON.stringify(user);
-    let users=await dbgetUsers();
-  return formatJSONResponse({users});
+    let tenants=await dbgetUsers();
+  return formatJSONResponse({tenants});
   } catch (e) {
     return formatJSONResponse(
       {
@@ -26,4 +23,4 @@ const currentUser: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (ev
 
 };
 
-export const main = middyfy(currentUser);
+export const main = middyfy(createTenant);

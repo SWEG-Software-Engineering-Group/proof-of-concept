@@ -5,14 +5,6 @@ import { dbgetTextuntranslated } from 'src/services/dynamodbTexts';
 import schema from './schema';
 
 const getTextuntranslated: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
-  //TODO rimuovere il valore dal database e ritornare un valore booleano.
-  /*
-    try(await db.deleteTenant(event.body.name)){
-      ritorna successo.
-    }catch(eroor e){
-      ritorna errore.
-    }
-  */
     try {
       const tenant = event.pathParameters.tenant as string;
       const language = event.pathParameters.language as string;

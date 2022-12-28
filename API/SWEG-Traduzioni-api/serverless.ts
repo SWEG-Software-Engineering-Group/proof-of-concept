@@ -11,7 +11,12 @@ import {
   getTextuntranslated,
   singleTenantinfo,
   getTextlang,
-  inserttranslation
+  inserttranslation,
+  deleteTextTranslation,
+  deleteTextOriginal,
+  updateTenant,
+  getallText,
+  updateText
 }
   from '@functions/index'; import { environment } from 'src/environement/environement';
 
@@ -108,14 +113,19 @@ const serverlessConfiguration: AWS = {
     getTenant,
     createTenant,
     deleteTenant,
+    singleTenantinfo,
     newUser,
     getUsers,
     getText,
     insertText,
     getTextuntranslated,
-    singleTenantinfo,
     getTextlang,
-    inserttranslation
+    inserttranslation,
+    deleteTextTranslation,
+    deleteTextOriginal,
+    updateTenant,
+    getallText,
+    updateText
   },
   package: { individually: true },
   custom: {
