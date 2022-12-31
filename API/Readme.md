@@ -13,3 +13,7 @@ Installa serverless offline
 comando per eseguire le API
 
 > sls offline 
+(sls potrebbe fare conflitto con Powershell su Windows)
+Si usi invece:
+> serverless offline
+
