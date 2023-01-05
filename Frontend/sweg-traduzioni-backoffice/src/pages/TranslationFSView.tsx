@@ -34,7 +34,7 @@ export function TranslationFSView(props:any) {
             width:'85vw',
             margin:'1.5rem auto',}}
         >
-            <Grid container columnSpacing= {5} minHeight={'100vh'}>
+            <Grid container columnSpacing= {5} rowSpacing={5} minHeight={'100vh'}>
                 <Grid item xs={12} sm={2}>
                     <Button variant="outlined">Log out</Button>
                 </Grid>

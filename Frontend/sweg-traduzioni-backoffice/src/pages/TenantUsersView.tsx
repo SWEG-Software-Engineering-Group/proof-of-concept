@@ -15,7 +15,7 @@ export default function TenantUsersView(){
             minHeight:'calc(100vh - 3rem)',
         }}
         >
-            <Grid container columnSpacing= {5} >
+            <Grid container columnSpacing= {5} rowSpacing={5} >
                 <Grid item xs={12} sm={2} >
                     <Button variant="outlined" sx={{display:'block', position:'sticky', zIndex:'20', top:'1.5rem'}}>Log out</Button>
                 </Grid>

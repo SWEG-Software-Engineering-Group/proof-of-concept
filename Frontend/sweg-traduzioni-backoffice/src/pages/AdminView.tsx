@@ -71,13 +71,13 @@ export default function AdminView()
                     </Link>
                 </Grid>
             </Grid>
-            <EmptyModal open={visibleModal} closeModal={closeModal} openModal={openModal} specificModal={<NewContentModal closeModal={closeModal} openModal={openModal}/>}></EmptyModal>
+            <EmptyModal open={visibleModal} closeModal={closeModal} openModal={openModal} specificModal={<PendingTranslationsModal closeModal={closeModal} openModal={openModal}/>}></EmptyModal>
         </div>
     )
 }
 
 
-//<EmptyModal open={visibleModal} closeModal={closeModal} openModal={openModal} specificModal={<PendingTranslationsModal closeModal={closeModal} openModal={openModal}/>}></EmptyModal>
+//<EmptyModal open={visibleModal} closeModal={closeModal} openModal={openModal} specificModal={<NewContentModal closeModal={closeModal} openModal={openModal}/>}></EmptyModal>
 //<EmptyModal open={visibleModal} closeModal={closeModal} openModal={openModal} specificModal={<NewFolderModal closeModal={closeModal} openModal={openModal}/>}></EmptyModal>
 
 

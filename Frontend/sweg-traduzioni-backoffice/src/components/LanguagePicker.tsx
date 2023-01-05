@@ -20,7 +20,7 @@ export default function LanguagePicker(props : any) {
 
     //ui
     return (
-        <FormControl fullWidth sx={{margin:".5rem"}}>
+        <FormControl fullWidth>
             <InputLabel id="language-elect-label">Language</InputLabel>
             <Select
                 labelId="language-select-label"
@@ -28,7 +28,7 @@ export default function LanguagePicker(props : any) {
                 value={language}
                 label="Language"
                 onChange = {(e) => {
-                    props.handleLanguageChange(e);
+                    props.handleLanguageChange(e.target.value);
                     setLanguage(e.target.value);
                 }}
             >
@@ -37,7 +37,7 @@ export default function LanguagePicker(props : any) {
                 <MenuItem value={'Japanese'}>日本語 <span aria-hidden='true'>&nbsp;🇯🇵</span></MenuItem>
                 <MenuItem value={'Chinese'}>中文 <span aria-hidden='true'>&nbsp;🇨🇳</span></MenuItem> */}
 
-
+                
                 <MenuItem value={"Afrikaans"}>Afrikaans <span aria-hidden='true'>&nbsp;🇿🇦</span></MenuItem>
                 <MenuItem value={"Albanian"}>Albanian <span aria-hidden='true'>&nbsp;🇦🇱</span></MenuItem>
                 <MenuItem value={"Arabic"}>Arabic <span aria-hidden='true'>&nbsp;🇸🇦</span></MenuItem>

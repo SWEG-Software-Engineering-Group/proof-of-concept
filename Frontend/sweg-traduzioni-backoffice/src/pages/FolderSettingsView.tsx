@@ -47,7 +47,7 @@ export default function FolderSettingsView() {
             minHeight:'100vh',
         }}
         >
-            <Grid container columnSpacing= {5} >
+            <Grid container columnSpacing= {5} rowSpacing={5} >
                 <Grid item xs={12} sm={2} >
                     <Button variant="outlined" sx={{display:'block', position:'sticky', zIndex:'20', top:'1.5rem', marginBottom:'1rem'}}>Log out</Button>
                 </Grid>
