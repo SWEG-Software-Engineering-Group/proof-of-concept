@@ -6,6 +6,8 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import {Link} from 'react-router-dom';
 import ConfirmCancelButtons from '../components/ConfirmCancelButtons';
 import LanguagePicker from '../components/LanguagePicker';
+import ConfirmButtons from '../components/ConfirmButton';
+import Confermaindietro from '../components/ConfermaIndietro';
 
 export default function CreateTenantView() {
     const startingLanguage = 'English';
@@ -17,10 +19,12 @@ export default function CreateTenantView() {
     const [confirmPassword, setConfirmPassword] = useState<string>('');
 
 
+//  LOGICA
+
     const handleSubmit = (e:any) =>{
         e.preventDefault();
 
-        console.log(
+/*        console.log(
             {
                 tenantName,
                 defaultLanguage,
@@ -28,7 +32,24 @@ export default function CreateTenantView() {
                 password,
                 confirmPassword,
             });
-    }
+*/ 
+
+const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ 
+      "name": tenantName,
+      "mainlang":"en",
+      "languages":["en","es"],
+      "users":["pippo"]
+    }) 
+  };
+  fetch('http://localhost:3000/dev/createTenant', requestOptions)
+    .then(response => response.json())
+    .then(data => {});
+
+
+        }
     const handleLanguageChange = (e : any) => {
         console.log(e.target.value);
         setDefaultLanguage(e.target.value);
@@ -45,9 +66,9 @@ export default function CreateTenantView() {
                 </Grid>
                 <Grid item xs={12} sm={8}>
                     <form
-                        noValidate
-                        autoComplete="off"
-                        onSubmit={handleSubmit}
+                      noValidate
+                      autoComplete="off"
+                      onSubmit={handleSubmit} 
                         >
                         <div>
                             <Typography variant={'h5'} margin={'0 0 1rem .5rem'}>Choose tenant name</Typography>
@@ -110,8 +131,12 @@ export default function CreateTenantView() {
                             onChange={(e) => {setConfirmPassword(e.target.value)}}
                             sx={{marginBottom:'1rem'}}
                             />
-                        </div>       
-                        <ConfirmCancelButtons to='/superAdmin'/>
+                        </div>  
+                        <Grid container sx={{padding:'0 .5rem', justifyContent:'space-between'}}>     
+                            <Grid item>  <ConfirmCancelButtons to='/superAdmin'/> </Grid>
+                            <Grid item>  <ConfirmButtons /> </Grid>
+                            <Grid item>  <Confermaindietro to='/superAdmin'/> </Grid>
+                        </Grid>
                     </form>
                 </Grid>
             </Grid>
@@ -121,6 +146,7 @@ export default function CreateTenantView() {
                     translate: '' 
                 }}>
             </Grid>
+
         </div>
     )
 }

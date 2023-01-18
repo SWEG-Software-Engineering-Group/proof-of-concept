@@ -6,7 +6,10 @@ import TenantLanguagesList from '../components/TenantLanguagesList'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DeleteIcon from '@mui/icons-material/Delete';
 import StarIcon from '@mui/icons-material/Star';
-import StarOutlineIcon from '@mui/icons-material/StarOutline';
+import StarBorderIcon from '@mui/icons-material/StarBorder'; 
+import StarOutlineIcon from '@mui/icons-material/StarOutline'; 
+
+
 
 export default function TenantSettingsView(props: any) {
     

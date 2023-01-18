@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function TenantListItem(props:any) {
+
     return(
         <ListItem
             sx={{bgcolor: props.bgcolor}}
@@ -24,7 +25,7 @@ export default function TenantListItem(props:any) {
             </Avatar>
             </ListItemAvatar> */}
             <ListItemText
-            primary="Name of a nice tentant"
+            primary= {props.tenantName}
             secondary={true ? 'Admin name' : null}
             />
         </ListItem>

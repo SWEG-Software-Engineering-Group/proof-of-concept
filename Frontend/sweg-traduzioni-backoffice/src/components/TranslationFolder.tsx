@@ -2,7 +2,7 @@ import {useState} from "react";
 import {Card, Grid, CardActionArea, CardContent, Typography} from '@mui/material';
 import {Link} from 'react-router-dom';
 import TranslationFolderAdminActions from "./TranslationFolderAdminActions";
-import { Palette } from "@mui/icons-material";
+import { palette } from "@mui/system";
 
 export default function TranslationFolder(props:any) {
 //hooks

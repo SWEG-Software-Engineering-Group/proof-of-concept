@@ -5,8 +5,15 @@ import TenantList from '../components/TenantList';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import {Link} from 'react-router-dom';
 
-export default function SuperAdminView() {
+export default  function SuperAdminView()  {
+    //const [tenants, setTenants] = useState<Tenant[]>();
+
+    const response = (async () => (await (await fetch('http://localhost:3000/dev/allTenants')).json()).then(console.log("ciao")));
+
     const [tenants, setTenants] = useState<Tenant[]>();
+
+   // this.setState({ totalReactPackages: data.total }); 
+
     return (
         <div style={{
             width:'85vw',
