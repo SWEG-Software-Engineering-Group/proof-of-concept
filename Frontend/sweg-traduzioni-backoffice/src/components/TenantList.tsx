@@ -10,14 +10,11 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function TenantList(){
-
-
     const [error, setError]         = useState(null);
     const [isLoaded, setIsLoaded]   = useState(false);
     const [items, setItems]         = useState([]);
     let [contatore,setcontatore]  = useState(0);
   
-
     // LOGICA
 
     // Note: the empty deps array [] means
@@ -40,8 +37,6 @@ export default function TenantList(){
           }
         )
     }, [])
-
-
 
     let a ;
     let b ;
@@ -76,18 +71,13 @@ export default function TenantList(){
     // funzione che ritorna i blocchi html in rect divisi per ogni tenant
     let counter2 : number = 0;
     const arrayDiTenantListItem : any = listanomitenant.map((nome) => {
-
-                                                            counter2++;
-                                                            return (
-                                                            (counter2 %2) == 0 ? <TenantListItem bgcolor='primary.main' tenantName={nome}/> 
-                                                            :
-                                                            <TenantListItem bgcolor='secondary.main' tenantName={nome}/> ) ;
-                                                            //console.log(nome);                                    
-                                });
-
-
-    //console.log(arrayDiTenantListItem);
-                              
+      counter2++;
+      return (
+      (counter2 %2) == 0 ? <TenantListItem bgcolor='primary.main' tenantName={nome}/> 
+      :
+      <TenantListItem bgcolor='secondary.main' tenantName={nome}/> ) ;
+      });
+               
     return(
         <List
         sx={{ width: '100%', maxWidth: 360}}

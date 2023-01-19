@@ -48,8 +48,28 @@ const requestOptions = {
     .then(response => response.json())
     .then(data => {});
 
+    /*
+"username": "username1",
+    "password": "password",
+    "type": "admin",
+    "email": "email"*/ 
 
+    const requestOptionsNewUser = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          "username": adminUsername,
+          "password": password,
+          "type": "admin",
+          "email":"email"
+        }) 
+      };
+
+      fetch('http://localhost:3000/dev/createUser', requestOptionsNewUser)
+        .then(response => response.json())
+        .then(data => {});
         }
+        
     const handleLanguageChange = (e : any) => {
         console.log(e.target.value);
         setDefaultLanguage(e.target.value);
@@ -86,7 +106,12 @@ const requestOptions = {
                         </div>
                         <div>
                             <Typography variant={'h5'} margin={'2rem 0 1rem .5rem'}>Choose default language</Typography>
-                            <LanguagePicker handleLanguageChange={handleLanguageChange} default={startingLanguage}/>
+                            <LanguagePicker 
+                            handleLanguageChange={handleLanguageChange}
+                            default={startingLanguage}
+                            />
+                             { /*                            
+                             */ }
                         </div>
                 
                         <div>

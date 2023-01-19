@@ -11,11 +11,16 @@ import FolderSettingsView from "../pages/FolderSettingsView";
 import TenantSettingsView from "../pages/TenantSettingsView";
 import TenantUsersView from "../pages/TenantUsersView";
 import CreateTenantUserView from "../pages/CreateTenantUserView";
+import Loginview from "../pages/Loginview";
+
 export default function Router() {
     return(
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<App />}/>;
+               
+                <Route path="/login" element={<Loginview />}/>;
+
                 <Route path="/todo/" element={<TranslationFSView/>}/>;
                 <Route path="/todo/:folderId" element={<TranslationFSView/>}/>;
                 <Route path="/todo/write/:translationId" element={<TranslationView/>}/>;
