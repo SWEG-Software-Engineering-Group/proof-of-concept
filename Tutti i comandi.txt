@@ -4,7 +4,7 @@ Creare cartella Backend
 - git checkout Mircea
 - git status (per controllare di essere veramente lì)
 - npm i (per installare tutto)
-- cd API/sweg-traduzioni-api
+- cd API/SWEG-Traduzioni-api
 - serverless dynamodb start
 
 Se non funziona il comando precedente:
