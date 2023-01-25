@@ -9,7 +9,7 @@ const getTenant: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (even
   //TODO una volta implementato il database eseguire la query che riceve i nomi e ritornatli;
   //let tenants = await dbgetTenants();
   let tenants=await dbgetTenants();
-  return formatJSONResponse({tenants});
+  return formatJSONResponse(tenants);
 };
 
 export const main = middyfy(getTenant);

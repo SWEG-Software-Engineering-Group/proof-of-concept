@@ -1,7 +1,7 @@
 import type { ValidatedEventAPIGatewayProxyEvent } from '@libs/api-gateway';
 import { formatJSONResponse } from '@libs/api-gateway';
 import { middyfy } from '@libs/lambda';
-import { dbeditText, dbputOriginalText } from 'src/services/dynamodbTexts';
+import { dbeditText } from 'src/services/dynamodbTexts';
 import { Text } from 'src/types/Text';
 
 import schema from './schema';

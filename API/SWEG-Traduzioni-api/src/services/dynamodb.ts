@@ -193,26 +193,6 @@ const removelangs = async (langs: Array<String>, tenant: Tenant) => {
         }
     });
 }
-const renamelangs = async (langs: Array<String>, oldTenant: Tenant, newtenant: Tenant) => {
-    await langs.forEach(async element => {
-        const params = {
-            TableName: environment.dynamo.textTable.tableName,
-            Key: {
-                tenantName: oldTenant.name,
-                language: element,
-            },
-            UpdateExpression: "SET #attrName = :attrValue",
-            ExpressionAttributeNames: {
-                "#attrName": "tenantName"
-            },
-            ExpressionAttributeValues: {
-                ":attrValue": newtenant.name
-            },
-            ReturnValues: "UPDATED_NEW"
-        };
-        ddbDocClient.send(new UpdateCommand(params));
-    });
-}
 export {
     dbputTenant,
     dbgetTenants,

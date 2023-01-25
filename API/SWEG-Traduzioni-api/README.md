@@ -115,3 +115,6 @@ per far partire il server dynamodb esegui il comando una volta in una shell sepa
 per provare usa sls offline dopo il start di dynamodb
 
 - `sls offline`
+
+- `npm install --save-dev jest`
+- `npm i --save-dev @types/jest`

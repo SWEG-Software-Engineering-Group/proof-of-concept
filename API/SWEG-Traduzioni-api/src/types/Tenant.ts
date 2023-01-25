@@ -1,8 +1,8 @@
 interface Tenant {
     name: string;
     mainlang: string | null;
-    languages:[string],
-    users:[string],
+    languages:Array<string>,
+    users:Array<string>,
   }
   
   export { Tenant };
