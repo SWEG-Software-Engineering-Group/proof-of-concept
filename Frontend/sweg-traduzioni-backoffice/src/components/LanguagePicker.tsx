@@ -8,6 +8,7 @@ export default function LanguagePicker(props : any) {
 
     //logics
     const handleChange = (event: SelectChangeEvent) => {
+        console.log(event.target.value);
         setLanguage(event.target.value as string);
     };
 
@@ -28,7 +29,7 @@ export default function LanguagePicker(props : any) {
                 value={language}
                 label="Language"
                 onChange = {(e) => {
-                    props.handleLanguageChange(e.target.value);
+                    props.handleLanguageChange(e);
                     setLanguage(e.target.value);
                 }}
             >

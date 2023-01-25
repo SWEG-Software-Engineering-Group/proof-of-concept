@@ -29,17 +29,17 @@ export default function TenantListItem(props:any) {
     // logica
 //    "name":"tenantname"
 */
+
+
+
     return(
         <ListItem
             sx={{bgcolor: props.bgcolor}}
             divider
             secondaryAction={
-            <IconButton edge="end" aria-label="delete">
+            <IconButton edge="end" aria-label="delete" onClick={() => props.delete()}>
                 <DeleteIcon 
-                />
-                {/*     
-                           onChange={(e) => setTenantName(props.tenantName)}
-*/}
+                />                                
             </IconButton>
             }
         >

@@ -39,7 +39,7 @@ const requestOptions = {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ 
       "name": tenantName,
-      "mainlang":"en",
+      "mainlang":defaultLanguage,
       "languages":["en","es"],
       "users":["pippo"]
     }) 
