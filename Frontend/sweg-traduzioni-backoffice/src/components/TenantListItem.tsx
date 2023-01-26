@@ -11,7 +11,7 @@ import {useState} from "react";
 export default function TenantListItem(props:any) {
 /*
     const [tenantName, setTenantName] = useState<string>('');
-
+*/
     const requestOptions = {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
@@ -20,15 +20,18 @@ export default function TenantListItem(props:any) {
         }) 
       };
 
-    const deleteTenant = (id : string) => {
+
+    const deleteTenant = () => {
     fetch('http://localhost:3000/dev/deleteTenant' , requestOptions )
     .then(res => res.text()) 
-    .then(res => console.log(res))
+    .then(res => console.log(res));
+
+    window.location.reload();               // RICARICA LA PAGINA
     }
 
     // logica
 //    "name":"tenantname"
-*/
+
 
 
 
@@ -37,7 +40,7 @@ export default function TenantListItem(props:any) {
             sx={{bgcolor: props.bgcolor}}
             divider
             secondaryAction={
-            <IconButton edge="end" aria-label="delete" onClick={() => props.delete()}>
+            <IconButton edge="end" aria-label="delete" onClick={() => deleteTenant()}>
                 <DeleteIcon 
                 />                                
             </IconButton>
