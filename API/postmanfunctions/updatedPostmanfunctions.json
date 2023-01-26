@@ -245,7 +245,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"username1\",\n    \"password\": \"password\",\n    \"type\": \"admin\",\n    \"email\": \"email\"\n}",
+							"raw": "{\n    \"username\": \"pippo\",\n    \"password\": \"password\",\n    \"type\": \"admin\",\n    \"email\": \"email\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -268,10 +268,52 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "getAllusers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/dev/pippo/getTenants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"dev",
+								"pippo",
+								"getTenants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userTenants",
 					"request": {
 						"method": "GET",
 						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUser",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/dev/pippo/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"dev",
+								"pippo",
+								"delete"
+							]
+						}
 					},
 					"response": []
 				}
@@ -345,6 +387,27 @@
 								"dev",
 								"tenantprova",
 								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tenantUsers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/dev/tenantprova/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"dev",
+								"tenantprova",
+								"users"
 							]
 						}
 					},
