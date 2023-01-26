@@ -1,10 +1,13 @@
 export { default as hello } from './hello';
 export { default as getTenant } from './tenant/gettenants';
+export { default as tentantUsers } from './tenant/getTenantUsers';
 export { default as createTenant } from './tenant/createtenant';
 export { default as deleteTenant } from './tenant/delete';
 export { default as updateTenant } from './tenant/updateTenant';
 export { default as newUser } from './user/newUser';
 export { default as getUsers } from './user/getUser';
+export { default as dbDeleteUser } from './user/deleteUser';
+export { default as gettenants } from './user/getTenants';
 export { default as getText } from './text/get/Textoriginal';
 export { default as getTextlang } from './text/get/TextLanguage';
 export { default as getallText } from './text/get/allTexts';

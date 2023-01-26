@@ -10,6 +10,7 @@ import {
 import { environment } from "src/environement/environement";
 import { UserData } from "src/types/UserData";
 import { ddbDocClient } from "./dbConnection";
+import { removeUser } from "./dynamodb";
 
 const dbcreateUser = async (userData: UserData) => {
     // Set the parameters.
@@ -40,8 +41,25 @@ const dbgetUsers = async () => {
         throw { err };
     }
 };
+const dbDeleteUser = async (username:string) => {
+    await removeUser(username);
+    // Set the parameters.
+    const params: GetCommandInput = {
+        TableName: environment.dynamo.userData.tableName,
+        Key: { username: username },
+    };
+    try {
+        //await removeUsers(tenantdata.languages, tenantdata);
+        const data = await ddbDocClient.send(new DeleteCommand(params));
+        console.log("Success - GET", data);
+    } catch (err) {
+        console.log("Error", err.stack);
+        throw { err, username };
+    }
+};
 
 export {
     dbcreateUser,
     dbgetUsers,
+    dbDeleteUser
 };

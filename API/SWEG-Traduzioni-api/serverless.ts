@@ -16,7 +16,10 @@ import {
   deleteTextOriginal,
   updateTenant,
   getallText,
-  updateText
+  updateText,
+  tentantUsers,
+  dbDeleteUser,
+  gettenants
 }
   from '@functions/index'; import { environment } from 'src/environement/environement';
 
@@ -125,7 +128,10 @@ const serverlessConfiguration: AWS = {
     deleteTextOriginal,
     updateTenant,
     getallText,
-    updateText
+    updateText,
+    tentantUsers,
+    dbDeleteUser,
+    gettenants
   },
   package: { individually: true },
   custom: {

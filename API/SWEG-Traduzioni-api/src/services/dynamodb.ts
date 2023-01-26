@@ -96,7 +96,7 @@ const dbupdateTenant = async (tenant: Tenant) => {
             TableName: environment.dynamo.textTable.tableName,
             Key: {
                 tenantName: oldTenant.name,
-                language:oldTenant.mainlang
+                language: oldTenant.mainlang
             },
             UpdateExpression: "SET #original = :mainlang",
             ExpressionAttributeNames: {
@@ -117,7 +117,7 @@ const dbupdateTenant = async (tenant: Tenant) => {
             TableName: environment.dynamo.textTable.tableName,
             Key: {
                 tenantName: tenant.name,
-                language:tenant.mainlang
+                language: tenant.mainlang
             },
             UpdateExpression: "SET #original = :mainlang",
             ExpressionAttributeNames: {
@@ -133,7 +133,7 @@ const dbupdateTenant = async (tenant: Tenant) => {
         return { "error": error };
     }
     //update tenant table
-    
+
     try {
         const params = {
             TableName: environment.dynamo.tenantTable.tableName,
@@ -193,10 +193,67 @@ const removelangs = async (langs: Array<String>, tenant: Tenant) => {
         }
     });
 }
+const userTenants = async (user: string) => {
+    const params: ScanCommandInput = {
+        TableName: environment.dynamo.tenantTable.tableName,
+        FilterExpression: " contains(#username,:username)",
+        ExpressionAttributeNames: { "#username": "users" },
+        ExpressionAttributeValues: {
+            ':username': user
+        }
+    };
+    try {
+        const data = await ddbDocClient.send(new ScanCommand(params));
+        console.log("Success - GET", data);
+        if (!data.Items) return { Tenant: [] };
+        return data.Items as Tenant[];
+    } catch (error) {
+        return { "error": error };
+    }
+}
+const removeUser = async (user: string) => {
+
+    const params: ScanCommandInput = {
+        TableName: environment.dynamo.tenantTable.tableName,
+        FilterExpression: " contains(#username,:username)",
+        ExpressionAttributeNames: { "#username": "users" },
+        ExpressionAttributeValues: {
+            ':username': user
+        }
+    };
+    try {
+        const data = await ddbDocClient.send(new ScanCommand(params));
+        console.log("Success - GET", data);
+        if (!data.Items) return { Tenant: [] };
+        (data.Items as Tenant[]).forEach(async tenant => {
+            const position = tenant.users.findIndex(element => { return element == user });
+            const params: UpdateCommandInput = {
+                TableName: environment.dynamo.tenantTable.tableName,
+                Key: {
+                    name: tenant.name,
+                },
+                UpdateExpression: "REMOVE #attrName[0]",
+                ExpressionAttributeNames: {
+                    "#attrName": "users"
+                },
+                ReturnValues: "ALL_NEW"
+            };
+            try {
+                await ddbDocClient.send(new UpdateCommand(params));
+            } catch (error) {
+                return { "error": error }
+            }
+        });
+    } catch (error) {
+        return { "error": error };
+    }
+}
 export {
     dbputTenant,
     dbgetTenants,
     dbdeleteTenants,
     dbgetTenantinfo,
-    dbupdateTenant
+    dbupdateTenant,
+    removeUser,
+    userTenants
 };

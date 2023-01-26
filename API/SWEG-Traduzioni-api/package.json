@@ -12,7 +12,8 @@
   "dependencies": {
     "@aws-sdk/lib-dynamodb": "^3.231.0",
     "@middy/core": "^3.4.0",
-    "@middy/http-json-body-parser": "^3.4.0"
+    "@middy/http-json-body-parser": "^3.4.0",
+    "run-func": "^3.0.0"
   },
   "devDependencies": {
     "@serverless/typescript": "^3.0.0",
