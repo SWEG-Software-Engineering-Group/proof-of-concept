@@ -29,6 +29,7 @@ export default function LanguagePicker(props : any) {
                 value={language}
                 label="Language"
                 onChange = {(e) => {
+                    console.log(e);
                     props.handleLanguageChange(e);
                     setLanguage(e.target.value);
                 }}

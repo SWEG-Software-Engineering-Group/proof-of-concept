@@ -1,25 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { List, ListItem, ListItemButton, ListItemText, Card, IconButton, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {Link} from 'react-router-dom';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import { getData } from '../functions/globals/axiosFunction';
 
 export default function TenantUsersList({tenantId} : {tenantId : string}) {
 
-  const [users, setUsers] = useState<string[]>(['a','b','c']);
+  const [users, setUsers] = useState<string[]>([]);
 
+  useEffect(() => {
+    console.log('loading users');
+      getData('http://localhost:3000/dev/allUsers').then((res : any) => {         //NEED NEW API FOR USER OF SPECIFIC TENANT USING tenantId prop
+          console.log(res.data.tenants);
+          setUsers(res.data.tenants);
+      })
+      .catch((err : any) =>{
+          console.error(err);
+      })
+  }, [])
 
-  const userList= users.map(user=>
-    <ListItem key={user} id={user} secondaryAction={<IconButton edge='end' aria-label='delete' onClick={() => deleteUser(user)}><DeleteIcon /></IconButton>}>
+  const userList= users.map((user : any) =>
+    <ListItem key={user.username} id={user.username} secondaryAction={<IconButton edge='end' aria-label='delete' onClick={() => deleteUser(user.username)}><DeleteIcon /></IconButton>}>
       <ListItemText
-          primary={`UserId = ${user}`}
+          primary={`UserId = ${user.username}`}
           //secondary={secondary ? 'Secondary text' : null}
       />
     </ListItem>
   ) 
 
-  const deleteUser = (userId : string) =>{
-    const newList = users.filter((user) => user !== userId);
+  const deleteUser = (username : string) =>{
+    const newList = users.filter((user : any) => {
+      return user.username !== username;
+    });
 
     setUsers(newList);
   }

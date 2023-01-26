@@ -41,7 +41,10 @@ export default function TenantSettingsView(props: any) {
         }
     }
 
-
+    const handleLanguageChange = (e : any) => {
+        console.log(e.target.value);
+        setNewLanguage(e.target.value);
+    }
 
     let {tenantId} = useParams<string>();
     if (typeof tenantId == 'undefined') tenantId = '0';
@@ -91,7 +94,7 @@ export default function TenantSettingsView(props: any) {
                                     <Grid container>
                                             <Typography variant='h6' component='h3'>Tenant's languages</Typography>
                                         <Grid item xs={10}>
-                                            <LanguagePicker default='English' handleLanguageChange={setNewLanguage}></LanguagePicker>
+                                            <LanguagePicker default='English' handleLanguageChange={handleLanguageChange}></LanguagePicker>
                                         </Grid>            
                                         <Grid item xs={2}>
                                             <IconButton onClick={addLanguage} sx={{display:'block', margin:'auto'}} aria-label="go to text editor for original text">

@@ -1,10 +1,10 @@
 import { Button, Card, Grid } from '@mui/material'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import TenantUsersList from '../components/TenantUsersList'
 import { Link } from 'react-router-dom'
+import { getData } from '../functions/globals/axiosFunction';
 
 export default function TenantUsersView(){
-    
 
     
     return(

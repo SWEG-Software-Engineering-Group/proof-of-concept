@@ -11,7 +11,7 @@ const darkTheme = createTheme({
   },
 });
 
-export default function Loginview() {  
+export default function LoginView() {  
     
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");

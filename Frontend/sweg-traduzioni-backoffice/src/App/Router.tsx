@@ -11,7 +11,7 @@ import FolderSettingsView from "../pages/FolderSettingsView";
 import TenantSettingsView from "../pages/TenantSettingsView";
 import TenantUsersView from "../pages/TenantUsersView";
 import CreateTenantUserView from "../pages/CreateTenantUserView";
-import Loginview from "../pages/Loginview";
+import LoginView from "../pages/LoginView";
 
 export default function Router() {
     return(
@@ -19,7 +19,7 @@ export default function Router() {
             <Routes>
                 <Route path="/" element={<App />}/>;
                
-                <Route path="/login" element={<Loginview />}/>;
+                <Route path="/login" element={<LoginView />}/>;
 
                 <Route path="/todo/" element={<TranslationFSView/>}/>;
                 <Route path="/todo/:folderId" element={<TranslationFSView/>}/>;
