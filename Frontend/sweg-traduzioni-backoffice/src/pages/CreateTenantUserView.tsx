@@ -2,18 +2,31 @@ import React, { useState } from "react";
 import ConfirmCancelButtons from "../components/ConfirmCancelButtons";
 import { Grid, TextField, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { postData } from "../functions/globals/axiosFunction";
 
 export default function CreateTenantUserView() {
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [confirmPassword, setConfirmPassword] = useState<string>('');
 
-    const tenantName = 'tenantNameExample';
+    const tenantName = 'tenant1';
 
     const navigate = useNavigate();
     const saveUser = (e:any)=>{
         e.preventDefault();
         //chiamata API per salvare user sul DB
+        const data = {
+            username : username.concat('-').concat(tenantName),
+            type : 'user',
+            password,
+            confirmPassword,
+        }
+        postData('http://localhost:3000/dev/createUser',data).then((res : any) => {
+            console.log(res);
+        })
+        .catch((err : any) => {
+            console.log('error', err);
+        })
         console.log('user inserito nel db!')
         if(username.length!=0 && password.length!=0 && confirmPassword.length!=0)
             navigate(-1);

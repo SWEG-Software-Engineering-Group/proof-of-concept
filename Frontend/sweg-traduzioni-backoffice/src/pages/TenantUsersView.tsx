@@ -21,7 +21,7 @@ export default function TenantUsersView(){
                 </Grid>
                 <Grid item xs={12} sm={8}>
                 <Card>
-                    <TenantUsersList tenantId='1'/>
+                    <TenantUsersList tenantId='tenant1'/>
                 </Card>
                 </Grid>
             </Grid>

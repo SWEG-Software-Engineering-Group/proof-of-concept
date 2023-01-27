@@ -1,5 +1,5 @@
 import { Button, Card, Grid, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, TextField, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import LanguagePicker from '../components/LanguagePicker'
 import TenantLanguagesList from '../components/TenantLanguagesList'
@@ -8,14 +8,28 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder'; 
 import StarOutlineIcon from '@mui/icons-material/StarOutline'; 
+import { deleteData, getData } from '../functions/globals/axiosFunction'
 
 
 
 export default function TenantSettingsView(props: any) {
-    
     const [tenantLanguages, setTenantLanguages] = useState<string[]>([]);
     const [defaultLanguage, setDefaultLanguage] = useState<string>('');
     const [newLanguage, setNewLanguage] = useState<string>('English');   //saves the language selected in the language picker
+
+    //load tenant's languages
+    useEffect(()=>{
+        getData(`http://localhost:3000/dev/${tenantId}/allTexts`).then((res : any) =>{
+            console.log(res.data.data);
+            let languageObjects : any[] = res.data.data;
+            if (languageObjects.length !== 0){
+                setDefaultLanguage(languageObjects.find((language : any) => language.original === true).language);
+                setTenantLanguages(languageObjects.map((language : any) => language.language ));
+            }
+        })
+        .catch();
+    },[])
+
 
     const languageList= tenantLanguages.map(language=>
       <ListItem key={language} id={language} secondaryAction={<IconButton edge='end' aria-label='delete' onClick={() => deleteLanguage(language)}><DeleteIcon /></IconButton>}>
@@ -33,7 +47,13 @@ export default function TenantSettingsView(props: any) {
   
     const deleteLanguage = (languageToBeDeleted : string) =>{
         if(languageToBeDeleted != defaultLanguage){
-            const newList = tenantLanguages.filter((language) => language !== languageToBeDeleted);
+            // deleteData(`http://localhost:3000/dev/${languageToBeDeleted}/deleteLanguage`).then((res : any) => { //MANCA QUESTA API
+            //   console.log("delete",res);          
+            // })
+            // .catch((err : any) =>{
+            //     console.error(err);
+            // })
+            const newList = tenantLanguages.filter((language : any) => language !== languageToBeDeleted);
             setTenantLanguages(newList);
         }
         else{
@@ -47,7 +67,7 @@ export default function TenantSettingsView(props: any) {
     }
 
     let {tenantId} = useParams<string>();
-    if (typeof tenantId == 'undefined') tenantId = '0';
+    if (typeof tenantId == 'undefined') tenantId = 'tenant1';
 
 
     const addLanguage = () => {
