@@ -8,7 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder'; 
 import StarOutlineIcon from '@mui/icons-material/StarOutline'; 
-import { deleteData, getData } from '../functions/globals/axiosFunction'
+import { putData, getData } from '../functions/globals/axiosFunction'
 
 
 
@@ -20,20 +20,39 @@ export default function TenantSettingsView(props: any) {
     //load tenant's languages
     useEffect(()=>{
         getData(`http://localhost:3000/dev/${tenantId}/allTexts`).then((res : any) =>{
-            console.log(res.data.data);
+            //console.log(res.data.data);
             let languageObjects : any[] = res.data.data;
             if (languageObjects.length !== 0){
                 setDefaultLanguage(languageObjects.find((language : any) => language.original === true).language);
                 setTenantLanguages(languageObjects.map((language : any) => language.language ));
             }
         })
-        .catch();
+        .catch((err : any) => {
+            console.log(err);
+        });
     },[])
 
 
     const languageList= tenantLanguages.map(language=>
       <ListItem key={language} id={language} secondaryAction={<IconButton edge='end' aria-label='delete' onClick={() => deleteLanguage(language)}><DeleteIcon /></IconButton>}>
-        <ListItemButton role={undefined} onClick={() => setDefaultLanguage(language)}>
+        <ListItemButton role={undefined} onClick={async () =>  {
+                setDefaultLanguage(language);
+                let tenantInfo : any;
+                await getData(`http://localhost:3000/dev/${tenantId}/info`).then((res : any) =>{
+                    tenantInfo = res.data.tenant;
+                    tenantInfo.mainlang = language;
+                })
+                .catch((err : any) => {
+                    console.log(err);
+                    return;
+                });
+                await putData(`http://localhost:3000/dev/${tenantId}/update`, tenantInfo).then((res : any) => { //MANCA QUESTA API
+                console.log("put",res);          
+                })
+                .catch((err : any) =>{
+                    console.error(err);
+                })
+                }}>
               <ListItemIcon>
                 {language == defaultLanguage ? <StarIcon/> : <StarOutlineIcon/>}                
             </ListItemIcon>
@@ -45,16 +64,28 @@ export default function TenantSettingsView(props: any) {
       </ListItem>
     ) 
   
-    const deleteLanguage = (languageToBeDeleted : string) =>{
+    const deleteLanguage = async (languageToBeDeleted : string) =>{
+        let tenantInfo : any;
+        await getData(`http://localhost:3000/dev/${tenantId}/info`).then((res : any) =>{
+            tenantInfo = res.data.tenant;
+        })
+        .catch((err : any) => {
+            console.log(err);
+            return;
+        });
+        
+        
         if(languageToBeDeleted != defaultLanguage){
-            // deleteData(`http://localhost:3000/dev/${languageToBeDeleted}/deleteLanguage`).then((res : any) => { //MANCA QUESTA API
-            //   console.log("delete",res);          
-            // })
-            // .catch((err : any) =>{
-            //     console.error(err);
-            // })
             const newList = tenantLanguages.filter((language : any) => language !== languageToBeDeleted);
             setTenantLanguages(newList);
+            if(tenantInfo) tenantInfo.languages = newList;
+            console.log(tenantInfo);
+            await putData(`http://localhost:3000/dev/${tenantId}/update`, tenantInfo).then((res : any) => { //MANCA QUESTA API
+              console.log("put",res);          
+            })
+            .catch((err : any) =>{
+                console.error(err);
+            })
         }
         else{
             alert('You cannot remove the default language from the list');
@@ -70,10 +101,28 @@ export default function TenantSettingsView(props: any) {
     if (typeof tenantId == 'undefined') tenantId = 'tenant1';
 
 
-    const addLanguage = () => {
+    const addLanguage = async () => {
         if(newLanguage != undefined && !tenantLanguages.includes(newLanguage)){
-            setTenantLanguages([...tenantLanguages, newLanguage]);
+            let tenantInfo : any;
+            await getData(`http://localhost:3000/dev/${tenantId}/info`).then((res : any) =>{
+                tenantInfo = res.data.tenant;
+            })
+            .catch((err : any) => {
+                console.log(err);
+                return;
+            });
+            
+            const newList = [...tenantLanguages, newLanguage]
+            setTenantLanguages(newList);
+            if(tenantInfo) tenantInfo.languages = newList;
             if(defaultLanguage == '') setDefaultLanguage(newLanguage);
+
+            await putData(`http://localhost:3000/dev/${tenantId}/update`, tenantInfo).then((res : any) => { //MANCA QUESTA API
+            console.log("put",res);          
+            })
+            .catch((err : any) =>{
+                console.error(err);
+            })
         }
     }
     

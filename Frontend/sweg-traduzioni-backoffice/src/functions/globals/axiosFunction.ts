@@ -26,9 +26,9 @@ export async function putData(url:string, data:unknown){
 }
 
 export async function postData(url:string, data:unknown){
-    return axios.put(url, data);
+    return axios.post(url, data);
 }
 
-export async function updateData(url:string, data:unknown){
-    return axios.put(url, data);
-}
+    // export async function updateData(url:string, data:unknown){
+    //     return axios.put(url, data);
+    // }

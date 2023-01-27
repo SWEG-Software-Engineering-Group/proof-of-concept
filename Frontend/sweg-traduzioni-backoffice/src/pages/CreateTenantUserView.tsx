@@ -2,32 +2,52 @@ import React, { useState } from "react";
 import ConfirmCancelButtons from "../components/ConfirmCancelButtons";
 import { Grid, TextField, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { postData } from "../functions/globals/axiosFunction";
+import { postData, getData, putData } from "../functions/globals/axiosFunction";
 
 export default function CreateTenantUserView() {
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [confirmPassword, setConfirmPassword] = useState<string>('');
 
-    const tenantName = 'tenant1';
+    const tenantId = 'tenant1';
 
     const navigate = useNavigate();
-    const saveUser = (e:any)=>{
+    const saveUser = async (e:any)=>{
         e.preventDefault();
         //chiamata API per salvare user sul DB
         const data = {
-            username : username.concat('-').concat(tenantName),
+            username : username.concat('-').concat(tenantId),
             type : 'user',
             password,
             confirmPassword,
         }
-        postData('http://localhost:3000/dev/createUser',data).then((res : any) => {
+        await postData('http://localhost:3000/dev/createUser',data).then((res : any) => {
             console.log(res);
         })
         .catch((err : any) => {
             console.log('error', err);
         })
-        console.log('user inserito nel db!')
+        console.log('user inserito nel db degli user!');
+
+
+        let tenantInfo : any;
+        await getData(`http://localhost:3000/dev/${tenantId}/info`).then((res : any) =>{
+            tenantInfo = res.data.tenant;
+            tenantInfo.users = [...tenantInfo.users, username.concat('-').concat(tenantId)]
+        })
+        .catch((err : any) => {
+            console.log(err);
+            return;
+        });
+
+        await putData(`http://localhost:3000/dev/${tenantId}/update`, tenantInfo).then((res : any) => {
+            console.log(res);
+        })
+        .catch((err : any) => {
+            console.log('error', err);
+        })
+        console.log('user inserito nel db del tenant!');
+
         if(username.length!=0 && password.length!=0 && confirmPassword.length!=0)
             navigate(-1);
     }
@@ -50,7 +70,7 @@ export default function CreateTenantUserView() {
                     </TextField>
                 </Grid>
                 <Grid item xs={6}>
-                    <TextField fullWidth required value={tenantName} disabled>
+                    <TextField fullWidth required value={tenantId} disabled>
                     </TextField>
                 </Grid>
                 <Grid item xs={12}>
