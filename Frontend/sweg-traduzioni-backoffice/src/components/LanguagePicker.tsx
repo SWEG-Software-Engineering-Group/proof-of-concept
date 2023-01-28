@@ -18,11 +18,16 @@ export default function LanguagePicker(props : any) {
     //   }
     // }, [language])
     
-
+    
     //ui
     return (
         <FormControl fullWidth>
             <InputLabel id="language-elect-label">Language</InputLabel>
+
+            {props.secondaryLanguages === undefined
+            
+            ?
+
             <Select
                 labelId="language-select-label"
                 id="language-select"
@@ -39,7 +44,6 @@ export default function LanguagePicker(props : any) {
                 <MenuItem value={'Japanese'}>日本語 <span aria-hidden='true'>&nbsp;🇯🇵</span></MenuItem>
                 <MenuItem value={'Chinese'}>中文 <span aria-hidden='true'>&nbsp;🇨🇳</span></MenuItem> */}
 
-                
                 <MenuItem value={"Afrikaans"}>Afrikaans <span aria-hidden='true'>&nbsp;🇿🇦</span></MenuItem>
                 <MenuItem value={"Albanian"}>Albanian <span aria-hidden='true'>&nbsp;🇦🇱</span></MenuItem>
                 <MenuItem value={"Arabic"}>Arabic <span aria-hidden='true'>&nbsp;🇸🇦</span></MenuItem>
@@ -112,7 +116,26 @@ export default function LanguagePicker(props : any) {
                 <MenuItem value={"Vietnamese"}>Vietnamese <span aria-hidden='true'>&nbsp;🇻🇳</span></MenuItem>
                 <MenuItem value={"Welsh"}>Welsh <span aria-hidden='true'>&nbsp;🏴󠁧󠁢󠁷󠁬󠁳󠁿</span></MenuItem>
                 <MenuItem value={"Xhosa"}>Xhosa <span aria-hidden='true'>&nbsp;🇱🇸/🇿🇦</span></MenuItem>
+
             </Select>
+            
+            :
+
+            <Select
+                labelId="language-select-label"
+                id="language-select"
+                value={language}
+                label="Language"
+                onChange = {(e) => {
+                    console.log(e);
+                    props.handleLanguageChange(e);
+                    setLanguage(e.target.value);
+                }}
+            >
+                {props.secondaryLanguages.map((secondaryLanguage : string) => <MenuItem key={secondaryLanguage} value={secondaryLanguage}>{secondaryLanguage}</MenuItem>)}
+            </Select>
+
+            }
         </FormControl>
     )
 }
