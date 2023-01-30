@@ -3,6 +3,9 @@ import ConfirmCancelButtons from "../components/ConfirmCancelButtons";
 import { Grid, TextField, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { postData, getData, putData } from "../functions/globals/axiosFunction";
+import ConfirmButtons from "../components/ConfirmButton";
+import Confermaindietro from '../components/ConfermaIndietro';
+
 
 export default function CreateTenantUserView() {
     const [username, setUsername] = useState<string>('');
@@ -82,7 +85,12 @@ export default function CreateTenantUserView() {
                     </TextField>
                 </Grid>
             </Grid>
-                <ConfirmCancelButtons to={'/admin/tenantSettings/users'}/>
+             {/*   <ConfirmCancelButtons to={'/admin/tenantSettings/users'}/>*/}
+                <Grid container sx={{padding:'0 .5rem', justifyContent:'space-between'}}>     
+                            <Grid item>  <ConfirmCancelButtons to='/admin/tenantSettings/users'/> </Grid>
+                            <Grid item>  <ConfirmButtons /> </Grid>
+                            <Grid item>  <Confermaindietro to='/admin/tenantSettings/users'/> </Grid>
+                        </Grid>
         </form>
     )
 }
