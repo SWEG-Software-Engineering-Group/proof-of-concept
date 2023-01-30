@@ -103,6 +103,7 @@ export default function EditOriginalTextView(props : any){
     let {translationId} = useParams<string>();
     if (typeof translationId == 'undefined') translationId = '0';
     console.log('translation id = key', translationId);
+    let cont = 0;   //usata perchè se no navigate(-1) veniva richiamata 2 volte facendoci tornare indietro di due pagine invece che di una sola
 
     useEffect(()=>{
         getData(`http://localhost:3000/dev/${tenantId}/Text`)
@@ -111,7 +112,9 @@ export default function EditOriginalTextView(props : any){
             setData(() => res.data.data.texts.find((text : any) => text.key==translationId))
             else{
                 alert(`There is no text with key=${translationId}`);
-                navigate(-1);
+                cont++;
+                if(cont == 2)
+                    navigate(-1);
             }
         })
         .catch((err : any) => {
