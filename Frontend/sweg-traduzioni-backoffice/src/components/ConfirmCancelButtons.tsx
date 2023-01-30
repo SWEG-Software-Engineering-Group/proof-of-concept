@@ -16,7 +16,7 @@ const navigate = useNavigate();
             </Grid>
 
             <Grid item>
-               <Button type='submit' onClick={() => props.handleConfirm()} variant='contained'>Confirm</Button>
+               <Button type='submit' onClick={(e : any) => props.handleConfirm(e)} variant='contained'>Confirm</Button>
              </Grid>
   
         </Grid>

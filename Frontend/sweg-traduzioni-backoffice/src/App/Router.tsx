@@ -24,7 +24,7 @@ export default function Router() {
 
                 <Route path="/todo/" element={<TranslationFSView/>}/>;
                 <Route path="/todo/:folderId" element={<TranslationFSView/>}/>;
-                <Route path="/todo/write/:translationId" element={<TranslationView/>}/>;
+                <Route path="/todo/translate/:language/:translationId" element={<TranslationView/>}/>;
                 <Route path="/todo/edit/:translationId" element={<EditOriginalTextView/>}/>;
 
                 <Route path="/superAdmin/" element={<SuperAdminView/>}/>;

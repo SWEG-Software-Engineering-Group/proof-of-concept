@@ -6,7 +6,7 @@ import TranslationCardAdminActions from "./TranslationCardAdminActions";
 
 export default function TranslationCard(props: any) {
 //hooks
-const [text, setText] = useState<string>('lorem ipsum');
+const [text, setText] = useState<string>(props.text);
 const [userType, setUserType] = useState<string>('admin');
 const {translationId} : {translationId : string} = props;
 
@@ -16,15 +16,15 @@ const {translationId} : {translationId : string} = props;
     return(
         <Grid item xs={12} sm={4}>            
             <Card>
-                <Link to={`/todo/write/${translationId}`} style={{textDecoration:"none"}}>
+                <Typography sx={{color: 'text.disabled', margin:0, padding:'1rem 1rem 0rem'}}>Text {translationId}</Typography>                
+                <Link to={`/todo/translate/${props.language}/${translationId}`} style={{textDecoration:"none"}}>
                 <CardActionArea>
                     <CardContent>
-                        <Typography>{translationId}</Typography>
                         <Typography sx={{overflow:'scroll', minHeight:'7rem',  maxHeight:'7em'}}>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi dolorum excepturi, illum explicabo veritatis atque architecto. Suscipit odio culpa qui fugiat labore id exercitationem autem assumenda, quisquam voluptatibus fuga porro.
+                            {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi dolorum excepturi, illum explicabo veritatis atque architecto. Suscipit odio culpa qui fugiat labore id exercitationem autem assumenda, quisquam voluptatibus fuga porro. */}
+                            {text}
                         </Typography>
                     </CardContent>
-                    <Typography sx={{color: 'text.disabled', margin:0, padding:'0 1rem'}}>Text</Typography>
                 </CardActionArea>
                 </Link>
                 {userType == 'admin' ? <TranslationCardAdminActions translationId={translationId}/>: null}
