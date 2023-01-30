@@ -14,13 +14,11 @@ const navigate = useNavigate();
                 {/* <Link to={props.to}><Button color='error' variant='outlined'>Cancel</Button></Link> */}
                 <Button color='error' variant='outlined' onClick={() => navigate(-1)}>Cancel</Button>
             </Grid>
-            {
 
             <Grid item>
                <Button type='submit' onClick={() => props.handleConfirm()} variant='contained'>Confirm</Button>
              </Grid>
-
-    }  
+  
         </Grid>
     )
 }
