@@ -8,7 +8,6 @@ export default function TranslationCardAdminActions({folderId} : {folderId:strin
 
     //logics
     function handleClick() {
-        console.log('ciao');
     }
 
     //ui

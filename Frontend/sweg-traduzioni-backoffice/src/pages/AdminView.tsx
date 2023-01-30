@@ -29,7 +29,9 @@ export default function AdminView()
                 return language !== res.data.tenant.mainlang;
                 }));
                 console.log(res.data.tenant);
-                setWorkingLanguage(res.data.tenant.languages[0]);
+                setWorkingLanguage(res.data.tenant.languages.filter((language : any) => {
+                    return language !== res.data.tenant.mainlang;
+                    })[0]);
             })
             .catch((err : any)=>{
                 console.log(err);
@@ -117,7 +119,7 @@ export default function AdminView()
                     </Link>
                 </Grid>
             </Grid>
-            <EmptyModal open={visibleModal} closeModal={closeModal} openModal={openModal} specificModal={<PendingTranslationsModal closeModal={closeModal} openModal={openModal}/>}></EmptyModal>
+            <EmptyModal open={visibleModal} closeModal={closeModal} openModal={openModal} specificModal={<PendingTranslationsModal closeModal={closeModal} openModal={openModal} translations={pending}/>}></EmptyModal>
         </div>
     )
 }

@@ -12,6 +12,7 @@ import TenantSettingsView from "../pages/TenantSettingsView";
 import TenantUsersView from "../pages/TenantUsersView";
 import CreateTenantUserView from "../pages/CreateTenantUserView";
 import LoginView from "../pages/LoginView";
+import EditOriginalTextView from "../pages/EditOriginalTextView";
 
 export default function Router() {
     return(
@@ -24,7 +25,7 @@ export default function Router() {
                 <Route path="/todo/" element={<TranslationFSView/>}/>;
                 <Route path="/todo/:folderId" element={<TranslationFSView/>}/>;
                 <Route path="/todo/write/:translationId" element={<TranslationView/>}/>;
-                <Route path="/todo/edit/:translationId" element={<TranslationView/>}/>;
+                <Route path="/todo/edit/:translationId" element={<EditOriginalTextView/>}/>;
 
                 <Route path="/superAdmin/" element={<SuperAdminView/>}/>;
                 <Route path="/superAdmin/createTenant" element={<CreateTenantView/>}/>;
