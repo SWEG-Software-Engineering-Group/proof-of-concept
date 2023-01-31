@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Grid, Button, Card, CardActionArea, CardContent, Typography} from "@mui/material"
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { IconButton } from "@mui/material";
 import Settings from "@mui/icons-material/Settings";
 import PendingTranslationsModal from "../components/modals/PendingTranslationsModal";
@@ -17,8 +17,17 @@ export default function AdminView()
     const [languages, setLanguages] = useState<string[]>([]);
     const [workingLanguage, setWorkingLanguage] = useState<string>('');
     const [visibleModal, setVisibleModal] = useState<boolean>(false);
+    const navigate = useNavigate();
+
 
     let tenantId = 'tenant1';
+
+    useEffect(() => {
+        if ( localStorage.getItem('tipo-di-utente') == "user" ) {
+            navigate("/todo");
+        }
+      }, []);
+
 
     useEffect(()=>{
         //immediately-invoked function expression in order to use async-await (non usata appieno ma la lascio per ricordare la sintassi e in caso possa servire)
@@ -76,7 +85,7 @@ export default function AdminView()
         >
             <Grid container columnSpacing={5} rowSpacing={3}>
                 <Grid item xs={12} sm={2} >
-                    <Button variant="outlined" sx={{display:'block', position:'sticky', zIndex:'20', top:'1.5rem'}}>Log out</Button>
+                    <Button variant="outlined" sx={{display:'block', position:'sticky', zIndex:'20', top:'1.5rem'}} onClick={() => navigate("/login")}>Log out</Button>
                 </Grid>
                 <Grid item xs={12} sm={8}>
                     <Grid container rowSpacing={3}>

@@ -11,7 +11,7 @@ import FolderSettingsView from "../pages/FolderSettingsView";
 import TenantSettingsView from "../pages/TenantSettingsView";
 import TenantUsersView from "../pages/TenantUsersView";
 import CreateTenantUserView from "../pages/CreateTenantUserView";
-import LoginView from "../pages/LoginView";
+import LoginView from "../pages/Loginview";
 import EditOriginalTextView from "../pages/EditOriginalTextView";
 
 export default function Router() {

@@ -17,24 +17,37 @@ export default function LoginView() {
     const [password, setPassword] = useState<string>("");
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
+    const [data, setItems] = useState([]);
+
+    /*
+    localStorage.setItem('tipo-di-utente', JSON.stringify("superadmin"));
+    console.log(localStorage)
+    */
+    localStorage.clear();       //pulisce localStorage
 
     function onClickButton(){
-        if(username === "superadmin" && password === "superadmin"){
-            navigate("/superAdmin");
-        }
+      if(username === "superadmin" && password === "superadmin"){
+          localStorage.setItem('tipo-di-utente', "superadmin");
+          console.log(localStorage)
+          navigate("/superAdmin");
+      }
 
-        if(username === "admin" && password === "admin"){
-            navigate("/admin");
-        }
+      if(username === "admin" && password === "admin"){
+        localStorage.setItem('tipo-di-utente', "admin");
+        console.log(localStorage)
+          navigate("/admin");
+      }
 
-        if(username === "user" && password === "user"){
-          navigate("/todo");
-        }
+      if(username === "user" && password === "user"){
+        localStorage.setItem('tipo-di-utente', "user");
+        console.log(localStorage)
+        navigate("/todo");
+      }
 
-        else{
-          setError("Username or password is incorrect");
-        }
-    }
+      else{
+        setError("Username or password is incorrect");
+      }
+  }
 
     return (
 

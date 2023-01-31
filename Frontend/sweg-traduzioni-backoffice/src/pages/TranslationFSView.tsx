@@ -1,6 +1,6 @@
 import { Button, Grid, IconButton} from "@mui/material";
 import React, { useState, useEffect } from "react";
-import {useParams} from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
 import LanguagePicker from '../components/LanguagePicker';
 import TranslationCard from "../components/TranslationCard";
 import TranslationFolder from "../components/TranslationFolder";
@@ -21,6 +21,8 @@ export function TranslationFSView(props:any) {
     const [textsData, setTextsData] = useState<any>();
     const [visibleModal, setVisibleModal] = useState<boolean>(false);
     const [textComponents, setTextComponents] = useState<any>();
+    const navigate = useNavigate();
+
 
     useEffect(()=>{
         //immediately-invoked function expression in order to use async-await (non usata appieno ma la lascio per ricordare la sintassi e in caso possa servire)
@@ -92,7 +94,7 @@ export function TranslationFSView(props:any) {
         >
             <Grid container columnSpacing= {5} rowSpacing={5} minHeight={'100vh'}>
                 <Grid item xs={12} sm={2}>
-                    <Button variant="outlined">Log out</Button>
+                    <Button variant="outlined" onClick={() => navigate("/login")}>Log out</Button>
                 </Grid>
                 <Grid item xs={12} sm={8}>
                     <Grid container spacing={1}>
