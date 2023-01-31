@@ -71,7 +71,6 @@ export function TranslationFSView(props:any) {
             setTextComponents(textsData.map((info : any) =>{
                 return <TranslationCard key={info.key + info.group} language={workingLanguage} translationId={info.key} text={info.text} />
             }))
-            console.log(textComponents);
         }
     },[textsData])
 
