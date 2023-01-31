@@ -32,7 +32,7 @@ export default function AdminView()
     useEffect(()=>{
         //immediately-invoked function expression in order to use async-await (non usata appieno ma la lascio per ricordare la sintassi e in caso possa servire)
         (async () =>{
-        await getData(`http://localhost:3000/dev/tenant1/info`)
+        await getData(`http://localhost:3000/dev/${tenantId}/info`)
             .then((res : any) =>{
                 setLanguages(res.data.tenant.languages.filter((language : any) => {
                 return language !== res.data.tenant.mainlang;
