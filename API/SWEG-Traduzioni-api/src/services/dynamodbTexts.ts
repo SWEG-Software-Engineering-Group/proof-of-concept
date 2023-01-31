@@ -14,12 +14,13 @@ import { languageText, Text } from "src/types/Text";
 import { dbgetTenantinfo } from "./dynamodb";
 import editText from "@functions/text/put/editText";
 const dbputText = async (tenant: string, newtext: Text, language: string = "") => {
-    const texts = await dbgetText(tenant);
+    const texts = await dbgetText(tenant,language);
     if (texts.texts.filter((value) => {
         return value.key == newtext.key && value.group == newtext.group;
     }).length > 0) {
         return "errore coppia chiave gruppo gia presente";
     }
+    //TODO controllo che la coppia chiave gruppo sia presente in original
     const tenantdata = await dbgetTenantinfo(tenant);
     const params: UpdateCommandInput = {
         TableName: environment.dynamo.textTable.tableName,
