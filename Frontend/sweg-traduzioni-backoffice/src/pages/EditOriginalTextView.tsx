@@ -15,9 +15,9 @@ export default function EditOriginalTextView(props : any){
     const [comment, setComment] = useState<string>('');
     const [links, setLinks] = useState<string>('');
     
-    const [mainLanguage, setMainLanguage] = useState<any>();
     let {translationId} = useParams<string>();
     if (typeof translationId == 'undefined') translationId = '0';
+    console.log('translation id = key', translationId);
     
     let cont = 0;   //usata perchè se no navigate(-1) veniva richiamata 2 volte facendoci tornare indietro di due pagine invece che di una sola
     useEffect(()=>{
@@ -35,15 +35,7 @@ export default function EditOriginalTextView(props : any){
         .catch((err : any) => {
         });
 
-        getData(`http://localhost:3000/dev/${tenantId}/info`)
-        .then((res : any) =>{
-            setMainLanguage(res.data.tenant.languages.find((language : any) => {
-                return language === res.data.tenant.mainlang;
-                }));
-        })
-        .catch((err : any)=>{
-            console.log(err);
-        });
+
     },[]);
 
     useEffect(()=>{
@@ -54,7 +46,7 @@ export default function EditOriginalTextView(props : any){
         }
     },[data]);
 
-    const handleConfirm = async (e:any) =>{
+    const handleConfirm = async () =>{
         //chiamate api per creare il nuovo testo
         console.log(data);
 
@@ -64,12 +56,12 @@ export default function EditOriginalTextView(props : any){
             key : translationId,
             group : data.group,
         }
-        console.log(mainLanguage);
         if(text != ''){
-        putData(`http://localhost:3000/dev/${tenantId}/${mainLanguage}/putText`, dataToBeSent).then(()=>{
-            setText('');
+            putData(`http://localhost:3000/dev/${tenantId}/English/putText`, dataToBeSent).then(()=>{
+                setText('');
             setComment('');
             setLinks('');
+            // props.closeModal();//chiude il modal
             navigate(-1);
         })
         .catch((err : any) => {
