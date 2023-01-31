@@ -3,15 +3,14 @@ Creare cartella Backend
 - cd proof-of-concept
 - git checkout Mircea
 - git status (per controllare di essere veramente lì)
-- npm i (per installare tutto)
+- npm i -g serverless 
+- serverless dynamodb install
 - cd API/SWEG-Traduzioni-api
-- serverless dynamodb start
+- npm i (per installare tutto)
+- serverless offline start
 
 Se non funziona il comando precedente:
 {
-- npm i @aws-sdk/lib-dynamodb
-(Windows)
-- serverless dynamodb install
 - Scaricare AWS CLI: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 
 (Linux)
@@ -42,6 +41,14 @@ Per avviare, dare Yes (y)
 http://localhost:3001/index
 
 Totale: 
-Porta 3000 - Serverless Offline
-Porta 3001 - Frontend
+Porta 3000 - Serverless Offline (va runnato per primo)
+Porta 3001 - Frontend (va runnato per secondo)
 Porta 8000 - DynamoDB
+
+Per runnare tutto:
+(Backend)
+- Essere dentro API/SWEG-Traduzioni-api
+- serverless offline start
+(Frontend)
+- Essere Frontend/sweg-traduzioni-backoffice
+- npm start
