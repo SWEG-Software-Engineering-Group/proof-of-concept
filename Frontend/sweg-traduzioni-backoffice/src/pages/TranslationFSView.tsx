@@ -23,6 +23,12 @@ export function TranslationFSView(props:any) {
     const [textComponents, setTextComponents] = useState<any>();
     const navigate = useNavigate();
 
+    useEffect(() => {
+        if ( localStorage.getItem('tipo-di-utente') == "superadmin" ) {
+            navigate("/superAdmin");
+        }
+      }, []);
+
 
     useEffect(()=>{
         //immediately-invoked function expression in order to use async-await (non usata appieno ma la lascio per ricordare la sintassi e in caso possa servire)

@@ -26,6 +26,9 @@ export default function AdminView()
         if ( localStorage.getItem('tipo-di-utente') == "user" ) {
             navigate("/todo");
         }
+        if ( localStorage.getItem('tipo-di-utente') == "superadmin" ) {
+            navigate("/superAdmin");
+        }
       }, []);
 
 
