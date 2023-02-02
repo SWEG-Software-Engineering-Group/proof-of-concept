@@ -8,7 +8,7 @@ import schema from './schema';
 
 const insertText: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
     try {
-      const val=await dbputText(event.pathParameters.tenant,event.body);
+      const val=await dbputText(event.pathParameters.tenant,event.body as Text);
       return formatJSONResponse({message:val});
     } catch (error) {
       return formatJSONResponse(

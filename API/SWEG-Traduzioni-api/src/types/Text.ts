@@ -3,6 +3,7 @@ interface Text {
     group: string;
     text: string;
     comment: string;
+    review:Text;
 }
 interface languageText {
     tenantName: string;

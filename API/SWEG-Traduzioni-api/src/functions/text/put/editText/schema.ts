@@ -5,6 +5,7 @@ export default {
     group: { type: 'string' },
     text: { type: 'string' },
     comment: { type: 'string' },
+    review: { type: 'bool' },
   },
-  required: ['key','group','text','comment']
+  required: ['key','group','text','comment','review']
 } as const;
