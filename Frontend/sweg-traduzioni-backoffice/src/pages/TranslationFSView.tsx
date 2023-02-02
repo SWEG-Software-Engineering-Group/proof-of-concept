@@ -13,18 +13,19 @@ import { getData } from "../functions/globals/axiosFunction";
 export function TranslationFSView(props:any) {
     let tenantId = 'tenant1'
     let {folderId} = useParams<string>();
-    if (typeof folderId == 'undefined') folderId = 'index';
+    if (typeof folderId === 'undefined') folderId = 'index';
     
     //hooks
     const [languages, setLanguages] = useState<string[]>([]);
     const [workingLanguage, setWorkingLanguage] = useState<string>('');
-    const [textsData, setTextsData] = useState<any>();
+    const [allTextsData, setAllTextsData] = useState<any>();
+    const [workingLanguageUntranslatedTextsData, setWorkingLanguageUntranslatedTextsData] = useState<any>();
     const [visibleModal, setVisibleModal] = useState<boolean>(false);
     const [textComponents, setTextComponents] = useState<any>();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if ( localStorage.getItem('tipo-di-utente') == "superadmin" ) {
+        if ( localStorage.getItem('tipo-di-utente') === "superadmin" ) {
             navigate("/superAdmin");
         }
       }, []);
@@ -51,7 +52,7 @@ export function TranslationFSView(props:any) {
         if(workingLanguage !== ''){
             getData(`http://localhost:3000/dev/tenant1/untraslated/${workingLanguage}`)
             .then((res : any) =>{
-                
+                setWorkingLanguageUntranslatedTextsData(res.data.texts);
             })
             .catch((err : any)=>{
                 console.log(err);
@@ -64,25 +65,36 @@ export function TranslationFSView(props:any) {
     (async()=>{
         await getData(`http://localhost:3000/dev/${tenantId}/allTexts`)
         .then((res : any) =>{
-            setTextsData(res.data.data.find((language : any) => language.original === true).texts);
+            setAllTextsData(res.data.data.find((language : any) => language.original === true).texts);
         })
         .catch((err : any) =>{
             console.log(err);
         })
     })();
-    },[languages])
+    },[languages, workingLanguage])
 
     useEffect(()=>{
-        if(textsData){
-            setTextComponents(textsData.map((info : any) =>{
-                return <TranslationCard key={info.key + info.group} language={workingLanguage} translationId={info.key} text={info.text} />
+        if(allTextsData){
+            setTextComponents(allTextsData.map((info : any) =>{
+                console.log('workingLang', workingLanguageUntranslatedTextsData);
+                if(workingLanguageUntranslatedTextsData){
+                    console.log('info', info);
+                if(workingLanguageUntranslatedTextsData.find((infoToFind : any) => {
+                    console.log('infoToFind', infoToFind);
+                    console.log('info', info );
+                    return infoToFind.key === info.key}))
+                    return <TranslationCard key={info.key + info.group} language={workingLanguage} translationId={info.key} text={info.text} />
+                else
+                    return <TranslationCard blocked={true} key={info.key + info.group} language={workingLanguage} translationId={info.key} text={info.text} />
+                }
             }))
         }
-    },[textsData])
+    },[allTextsData, workingLanguage])
 
     //logics
     const handleLanguageChange = (e: any) => {
-        
+        console.log(e.target.value);
+        setWorkingLanguage(e.target.value);
     }
     const closeModal = () =>{
         setVisibleModal(false);
@@ -110,12 +122,6 @@ export function TranslationFSView(props:any) {
                         </Grid>    */}
                         <Grid container spacing={1}>
                             {textComponents || null}
-                            {/* <TranslationCard translationId='1' />
-                            <TranslationCard translationId='2' />
-                            <TranslationCard translationId='3' />
-                            <TranslationCard translationId='4' />
-                            <TranslationCard translationId='5' />
-                            <TranslationCard translationId='6' /> */}
                         </Grid>   
                     </Grid>
                 </Grid>
@@ -124,12 +130,20 @@ export function TranslationFSView(props:any) {
                 {workingLanguage === '' ? null : <LanguagePicker default={workingLanguage} secondaryLanguages={languages} handleLanguageChange={handleLanguageChange}></LanguagePicker> }
                 </Grid>                
                 
+
+                {localStorage.getItem('tipo-di-utente') === "admin" ?
                 <IconButton onClick={() => setVisibleModal(true)} sx={{padding: 0, position:'fixed', bottom:'2rem', right:'2rem', scale:'200%', }} aria-label="go to text editor for original text">
                     <AddCircleOutlineIcon fontSize='large'/>
                 </ IconButton>
+                    :
+                    <></>
+                }
             </Grid>
 
+            {localStorage.getItem('tipo-di-utente') === "admin" ?
             <EmptyModal open={visibleModal} closeModal={closeModal} openModal={openModal} specificModal={<NewContentModal closeModal={closeModal} openModal={openModal}/>}></EmptyModal>
+            : <></>
+                        }
         </div>
     )
 } 

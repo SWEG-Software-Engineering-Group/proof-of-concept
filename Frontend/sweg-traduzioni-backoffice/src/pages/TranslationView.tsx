@@ -37,7 +37,7 @@ export default function TranslationView(){
     useEffect(()=>{
         if (data){
         setOriginalText(data.text);
-        setComment(data.comment);
+        setComment(data.comment === null ? '' : data.comment );
         //setLinks(data.links);
         }
     },[data]);
@@ -49,13 +49,14 @@ export default function TranslationView(){
         //aggiungi traduzione al db
         
         const dataToBeSent = {
-            text,
             comment,
-            key : translationId?.concat(language || ''),
+            text,
+            key : translationId,
             group : data.group,
         }
 
         if(text != ''){
+            console.log(tenantId, language, translationId, data.group);
             postData(`http://localhost:3000/dev/${tenantId}/${language}/translate`, dataToBeSent)
             .then((res : any)=>{
                 console.log(res);
@@ -64,8 +65,12 @@ export default function TranslationView(){
                 navigate(-1);
             })
             .catch((err : any) => {
+                console.log(dataToBeSent);
                 console.log(err)
             });
+        }
+        else{
+            alert('Text must not be empty');
         }
 
         console.log('traduzione aggiunta al db!')

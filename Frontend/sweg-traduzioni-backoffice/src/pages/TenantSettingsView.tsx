@@ -1,6 +1,6 @@
 import { Button, Card, Grid, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import LanguagePicker from '../components/LanguagePicker'
 import TenantLanguagesList from '../components/TenantLanguagesList'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
@@ -16,7 +16,7 @@ export default function TenantSettingsView(props: any) {
     const [tenantLanguages, setTenantLanguages] = useState<string[]>([]);
     const [defaultLanguage, setDefaultLanguage] = useState<string>('');
     const [newLanguage, setNewLanguage] = useState<string>('English');   //saves the language selected in the language picker
-
+    const navigate = useNavigate();
     //load tenant's languages
     useEffect(()=>{
         getData(`http://localhost:3000/dev/${tenantId}/allTexts`).then((res : any) =>{
@@ -133,17 +133,17 @@ export default function TenantSettingsView(props: any) {
         >    
             <Grid container columnSpacing={5} rowSpacing={5} minHeight={'100vh'}>
                 <Grid item xs={12} sm={2} >
-                    <Button variant="outlined" sx={{display:'block', position:'sticky', zIndex:'20', top:'1.5rem'}}>Log out</Button>
+                    <Button variant="outlined" sx={{display:'block', position:'sticky', zIndex:'20', top:'1.5rem'}} onClick={() => navigate("/login")}>Log out</Button>
                 </Grid>
                 <Grid item xs={12} sm={10}>
                     <Grid container columnSpacing={5} rowSpacing={5}>
-                        <Grid item xs={12}>
+                        {/* <Grid item xs={12}>
                             <Grid container sx={{position:'relative'}}>
                                 <TextField label='Tenant id' fullWidth value={tenantId} disabled>
                                 </TextField>
                                 <Button variant='contained' sx={{position:'absolute', height:'100%', right:'0', top:'50%', translate:'0 -50%', zIndex:'20'}}>Copy</Button>
                             </Grid>
-                        </Grid>
+                        </Grid> */}
                         <Grid item xs={12} sm={5}>
                             <Grid container columnSpacing={5} rowSpacing={5}>
                                 <Grid item xs={12}>

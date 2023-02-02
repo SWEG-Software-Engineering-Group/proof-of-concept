@@ -13,7 +13,6 @@ import TenantUsersList from '../components/TenantUsersList';
 
 export default function FolderSettingsView() {
     const [folderName, setFolderName] = useState<string>('');    
-    
     let {folderId} = useParams<string>();
     if (typeof folderId == 'undefined') folderId = '0';
 
@@ -49,7 +48,7 @@ export default function FolderSettingsView() {
         >
             <Grid container columnSpacing= {5} rowSpacing={5} >
                 <Grid item xs={12} sm={2} >
-                    <Button variant="outlined" sx={{display:'block', position:'sticky', zIndex:'20', top:'1.5rem', marginBottom:'1rem'}}>Log out</Button>
+                    <Button variant="outlined" sx={{display:'block', position:'sticky', zIndex:'20', top:'1.5rem', marginBottom:'1rem'}}  onClick={() => navigate("/login")}>Log out</Button>
                 </Grid>
                 <Grid item xs={12} sm={8}>
                     <div>

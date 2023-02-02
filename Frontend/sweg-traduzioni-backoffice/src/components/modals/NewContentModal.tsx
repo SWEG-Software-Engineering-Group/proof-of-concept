@@ -23,15 +23,15 @@ export default function NewContentModal(props: any) {
             justifyContent: 'space-evenly',
             alignItems: 'center',
         }}>
-            <Button variant="contained" sx={{padding:'2rem', width:'200px'}} onClick={()=>setVisibleModalA(true)}>
+            {/* <Button variant="contained" sx={{padding:'2rem', width:'200px'}} onClick={()=>setVisibleModalA(true)}>
                 Create new Folder / Category
-            </Button>
+            </Button> */}
             <Button variant="contained" sx={{padding:'2rem', width:'200px'}} onClick={()=>setVisibleModalB(true)}>
                 Create new Text
             </Button>
 
 
-            <EmptyModal open={visibleModalA} closeModal={()=>closeInnerModal('a')} openModal={()=>openInnerModal('a')} specificModal={<NewFolderModal closeModal={()=>closeInnerModal('a')} openModal={()=>openInnerModal('a')}/>}></EmptyModal>
+            {/* <EmptyModal open={visibleModalA} closeModal={()=>closeInnerModal('a')} openModal={()=>openInnerModal('a')} specificModal={<NewFolderModal closeModal={()=>closeInnerModal('a')} openModal={()=>openInnerModal('a')}/>}></EmptyModal> */}
             <EmptyModal open={visibleModalB} closeModal={()=>closeInnerModal('b')} openModal={()=>openInnerModal('b')} specificModal={<NewTextModal closeModal={()=>closeInnerModal('b')} openModal={()=>openInnerModal('b')}/>}></EmptyModal>
         </Card>           
     )

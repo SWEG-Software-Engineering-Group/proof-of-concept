@@ -31,7 +31,7 @@ export default function LanguagePicker(props : any) {
             <Select
                 labelId="language-select-label"
                 id="language-select"
-                value={language}
+                value={language ? language : ''}
                 label="Language"
                 onChange = {(e) => {
                     console.log(e);
@@ -124,7 +124,7 @@ export default function LanguagePicker(props : any) {
             <Select
                 labelId="language-select-label"
                 id="language-select"
-                value={language}
+                value={language ? language : ''}
                 label="Language"
                 onChange = {(e) => {
                     console.log(e);

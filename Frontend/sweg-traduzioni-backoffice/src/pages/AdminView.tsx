@@ -97,9 +97,11 @@ export default function AdminView()
                                 <CardActionArea onClick={() => setVisibleModal(true)}>
                                     <CardContent>
                                         <Typography variant="h5">
-                                            Review
-                                            <span style={{color:'white'}}>{` ${pending.length} `}</span>
-                                            pending translations
+                                        {pending ?                                            
+                                            <span style={{color:'white'}}>Review {` ${pending.length} `} pending translations</span>                                            
+                                            :
+                                            <span style={{color:'white'}}> There is no pending translation to review for this language</span>
+                                        }
                                         </Typography>
                                     </CardContent>
                                 </CardActionArea>

@@ -70,12 +70,17 @@ export default function TenantList(){
 
     // funzione che ritorna i blocchi html in rect divisi per ogni tenant
     let counter2 : number = 0;
+    console.log(listanomitenant);
     const arrayDiTenantListItem : any = listanomitenant.map((nome) => {
       counter2++;
+      if(nome != 'nts'){
       return (
-      (counter2 %2) == 0 ? <TenantListItem bgcolor='primary.main' tenantName={nome}/> 
+      (counter2 %2) == 0 
+      ? 
+      <TenantListItem bgcolor='primary.main' tenantName={nome}/> 
       :
       <TenantListItem bgcolor='secondary.main' tenantName={nome}/> ) ;
+      }
       });
                
     return(

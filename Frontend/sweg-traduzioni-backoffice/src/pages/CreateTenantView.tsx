@@ -3,7 +3,7 @@ import Tenant from '../interfaces/Tenant';
 import { IconButton, Button, Grid, Box, TextField, Typography } from '@mui/material';
 import TenantList from '../components/TenantList';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import ConfirmCancelButtons from '../components/ConfirmCancelButtons';
 import LanguagePicker from '../components/LanguagePicker';
 import ConfirmButtons from '../components/ConfirmButton';
@@ -17,7 +17,7 @@ export default function CreateTenantView() {
     const [adminSuffix, setAdminSuffix] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [confirmPassword, setConfirmPassword] = useState<string>('');
-
+    const navigate = useNavigate();
 
 //  LOGICA
 
@@ -34,41 +34,41 @@ export default function CreateTenantView() {
             });
 */ 
 
-const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ 
-      "name": tenantName,
-      "mainlang":defaultLanguage,
-      "languages":["en","es"],
-      "users":["pippo"]
-    }) 
-  };
-  fetch('http://localhost:3000/dev/createTenant', requestOptions)
-    .then(response => response.json())
-    .then(data => {});
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+            "name": tenantName,
+            "mainlang":defaultLanguage,
+            "languages":[defaultLanguage],
+            "users":["pippo", "bruno", "fabrizio"]
+            }) 
+        };
+        fetch('http://localhost:3000/dev/createTenant', requestOptions)
+            .then(response => response.json())
+            .then(data => {});
 
-    /*
-"username": "username1",
-    "password": "password",
-    "type": "admin",
-    "email": "email"*/ 
+            /*
+        "username": "username1",
+            "password": "password",
+            "type": "admin",
+            "email": "email"*/ 
 
-    const requestOptionsNewUser = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          "username": adminUsername,
-          "password": password,
-          "type": "admin",
-          "email":"email"
-        }) 
+            const requestOptionsNewUser = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                "username": adminUsername,
+                "password": password,
+                "type": "admin",
+                "email":"email"
+                }) 
       };
 
-      fetch('http://localhost:3000/dev/createUser', requestOptionsNewUser)
-        .then(response => response.json())
-        .then(data => {});
-        }
+        fetch('http://localhost:3000/dev/createUser', requestOptionsNewUser)
+            .then(response => response.json())
+            .then(data => {});
+    }
         
     const handleLanguageChange = (e : any) => {
         console.log(e.target.value);
@@ -82,7 +82,7 @@ const requestOptions = {
         >
             <Grid container columnSpacing= {5} minHeight={'100vh'}>
                 <Grid item xs={12} sm={2} >
-                    <Button variant="outlined" sx={{display:'block', position:'sticky', zIndex:'20', top:'1.5rem', marginBottom:'1rem'}}>Log out</Button>
+                    <Button variant="outlined" sx={{display:'block', position:'sticky', zIndex:'20', top:'1.5rem', marginBottom:'1rem'}}  onClick={() => navigate("/login")}>Log out</Button>
                 </Grid>
                 <Grid item xs={12} sm={8}>
                     <form
@@ -157,11 +157,7 @@ const requestOptions = {
                             sx={{marginBottom:'1rem'}}
                             />
                         </div>  
-                        <Grid container sx={{padding:'0 .5rem', justifyContent:'space-between'}}>     
-                            <Grid item>  <ConfirmCancelButtons to='/superAdmin'/> </Grid>
-                            <Grid item>  <ConfirmButtons /> </Grid>
-                            <Grid item>  <Confermaindietro to='/superAdmin'/> </Grid>
-                        </Grid>
+                            <Grid item>  <ConfirmCancelButtons to='/superAdmin' handleConfirm={()=>{}}/> </Grid>
                     </form>
                 </Grid>
             </Grid>
