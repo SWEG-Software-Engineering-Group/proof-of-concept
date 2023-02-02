@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"comment\": \"comment\",\n    \"text\": \"hola\",\n    \"key\": \"key\",\n    \"group\": \"hellogroup\"\n}",
+							"raw": "{\n    \"comment\": \"comment\",\n    \"text\": \"hola\",\n    \"key\": \"key\",\n    \"group\": \"hellogroup\",\n    \"review\":true\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -45,7 +45,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"comment\": \"comment\",\n    \"text\": \"hola\",\n    \"key\": \"key\",\n    \"group\": \"hellogroup\"\n}",
+							"raw": "{\n    \"comment\": \"comment\",\n    \"text\": \"hola\",\n    \"key\": \"key\",\n    \"group\": \"hellogroup\",\n    \"review\":true\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -209,7 +209,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"comment\": \"comment\",\n    \"text\": \"holaedited\",\n    \"key\": \"key\",\n    \"group\": \"hellogroup\"\n}",
+							"raw": "{\n    \"comment\": \"comment\",\n    \"text\": \"hola\",\n    \"key\": \"key\",\n    \"group\": \"hellogroup\",\n    \"review\":false\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -273,7 +273,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/dev/pippo/getTenants",
+							"raw": "http://localhost:3000/dev/allUsers",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -281,8 +281,7 @@
 							"port": "3000",
 							"path": [
 								"dev",
-								"pippo",
-								"getTenants"
+								"allUsers"
 							]
 						}
 					},
