@@ -13,23 +13,22 @@ export default function PendingTranslationsModal(props:any) {
         if(props.translationToBeReviewed){
             getData(`http://localhost:3000/dev/${tenantId}/Text`)
             .then((res : any) => {
-                console.log(res.data.data.texts);
                 setOriginal(res.data.data.texts.find((text : any) => text.key===props.translationToBeReviewed.key).text);
             })
         }
-    },[])
+    },[props.translationToBeReviewed])
 
     const handleDiscard = () =>{
         //elimina la traduzione che era a schermata e fa la relativa chiamata API
         props.discardTranslation();
         props.closeModal();//chiude il modal
-        props.openModal();//riapre il modal e quindi facendolo carica un'altra traduzione da valutare
+        //props.openModal();//riapre il modal e quindi facendolo carica un'altra traduzione da valutare
     }
-    const handleAccept = () =>{
+    const handleAccept = async () =>{
         //accetta la traduzione tramite API
         props.acceptTranslation();
-        props.closeModal();//chiude il modal
-        props.openModal();//riapre il modal e quindi facendolo carica un'altra traduzione da valutare
+        await props.closeModal();//chiude il modal
+        //props.openModal();//riapre il modal e quindi facendolo carica un'altra traduzione da valutare
     }
     
     return(

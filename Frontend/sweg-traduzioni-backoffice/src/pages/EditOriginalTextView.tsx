@@ -63,14 +63,14 @@ export default function EditOriginalTextView(props : any){
 
         const dataToBeSent = {
             text,
-            comment,
+            comment : comment ? comment : '',
             key : translationId,
             group : data.group,
             review : false,
         }
         if(text != ''){
             putData(`http://localhost:3000/dev/${tenantId}/${mainLanguage}/putText`, dataToBeSent).then(()=>{
-                setText('');
+            setText('');
             setComment('');
             setLinks('');
             navigate(-1);
@@ -103,11 +103,11 @@ export default function EditOriginalTextView(props : any){
                 <TextField multiline rows={'5'} fullWidth onChange={(e)=> setComment(e.target.value)} value={comment}>
                 </TextField>
             </Grid>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
                 <Typography variant={'h6'} component={'h3'}>Edit a list of links separated by commas if needed (not used for PoC)</Typography>            
                 <TextField multiline rows={'5'} fullWidth onChange={(e)=> setLinks(e.target.value)} value={links}>
                 </TextField>
-            </Grid>
+            </Grid> */}
             <Grid item xs={12}>
                 <Typography variant={'h6'} component={'h3'}>Original category</Typography>            
                 <TextField disabled fullWidth value={data ? (data.group || ''): ''}>

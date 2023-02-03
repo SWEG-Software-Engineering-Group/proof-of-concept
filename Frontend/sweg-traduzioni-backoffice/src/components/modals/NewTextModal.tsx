@@ -73,11 +73,11 @@ export default function NewTextModal(props:any) {
                 <TextField fullWidth onChange={(e)=> setGroup(e.target.value)} value={group}>
                 </TextField>
             </Grid>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
                 <Typography variant={'h6'} component={'h3'}>Enter a list of links separated by commas if needed (not used for PoC)</Typography>            
                 <TextField multiline rows={'5'} fullWidth onChange={(e)=> setLinks(e.target.value)} value={links}>
                 </TextField>
-            </Grid>
+            </Grid> */}
             <ApproveDiscardButtons handleDiscard={handleDiscard} handleAccept={handleAccept}/>
         </Grid>
     )

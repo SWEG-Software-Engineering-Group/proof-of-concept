@@ -19,7 +19,6 @@ export default function AdminView()
     const [visibleModal, setVisibleModal] = useState<boolean>(false);
     const navigate = useNavigate();
 
-
     let tenantId = 'tenant1';
 
     useEffect(() => {
@@ -53,11 +52,11 @@ export default function AdminView()
 
     useEffect(()=>{
         if(workingLanguage !== ''){
-            console.log(workingLanguage);
             getData(`http://localhost:3000/dev/tenant1/${workingLanguage}/Text`)
             .then((res : any) =>{
                 if(res.data.data.texts){
                 let aux = res.data.data.texts.filter((text : any) => text.review === true);
+                console.log('pending', aux)
                 setPending(aux);
                 }
             })
@@ -65,7 +64,7 @@ export default function AdminView()
                 console.log(err);
             });    
         }
-    }, [workingLanguage])
+    }, [workingLanguage, visibleModal])
 
     const closeModal = () =>{
         setVisibleModal(false);
@@ -79,17 +78,16 @@ export default function AdminView()
         setWorkingLanguage(e.target.value);
     }
 
-    const acceptTranslation = () =>{
+    const acceptTranslation = async () =>{
         if(pending){
             pending[0].review = false;
-            putData(`http://localhost:3000/dev/${tenantId}/${workingLanguage}/putText`, pending[0]).then(()=>{pending.shift()})
+            await putData(`http://localhost:3000/dev/${tenantId}/${workingLanguage}/putText`, {comment : pending[0].comment ? pending[0].comment : '' , text : pending[0].text, key : pending[0].key, group : pending[0].group, review : pending[0].review,}).then(()=>{setPending(pending.shift())}).then(()=>console.log(pending));
         }
     }
 
-    const discardTranslation = () =>{
+    const discardTranslation = async () =>{
         if(pending){
-            pending[0].review = false;
-            deleteData(`http://localhost:3000/dev/${tenantId}/${workingLanguage}/${pending[0].key}/${pending[0].group}/removeTranslationText`).then(()=>{pending.shift()})
+            await deleteData(`http://localhost:3000/dev/${tenantId}/${workingLanguage}/${pending[0].key}/${pending[0].group}/removeTranslationText`).then(()=>{setPending(pending.shift())})
         }
     }
 

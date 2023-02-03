@@ -57,7 +57,7 @@ export default function TranslationView(){
         }
 
         if(text != ''){
-            console.log(tenantId, language, translationId, data.group);
+            console.log(tenantId, language, translationId, data.group, dataToBeSent.review);
             postData(`http://localhost:3000/dev/${tenantId}/${language}/translate`, dataToBeSent)
             .then((res : any)=>{
                 console.log(res);
