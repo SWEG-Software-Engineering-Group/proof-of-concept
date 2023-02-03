@@ -76,12 +76,8 @@ export function TranslationFSView(props:any) {
     useEffect(()=>{
         if(allTextsData){
             setTextComponents(allTextsData.map((info : any) =>{
-                console.log('workingLang', workingLanguageUntranslatedTextsData);
                 if(workingLanguageUntranslatedTextsData){
-                    console.log('info', info);
                 if(workingLanguageUntranslatedTextsData.find((infoToFind : any) => {
-                    console.log('infoToFind', infoToFind);
-                    console.log('info', info );
                     return infoToFind.key === info.key}))
                     return <TranslationCard key={info.key + info.group} language={workingLanguage} translationId={info.key} text={info.text} />
                 else

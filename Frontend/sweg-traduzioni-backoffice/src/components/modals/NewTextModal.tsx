@@ -29,6 +29,7 @@ export default function NewTextModal(props:any) {
             text,
             key,
             group : group.trim() === '' ? 'index' : group.trim(),
+            review : false,
         }
         console.log(data);
         if(text != ''){

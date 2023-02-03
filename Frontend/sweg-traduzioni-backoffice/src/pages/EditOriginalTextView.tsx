@@ -66,6 +66,7 @@ export default function EditOriginalTextView(props : any){
             comment,
             key : translationId,
             group : data.group,
+            review : false,
         }
         if(text != ''){
             putData(`http://localhost:3000/dev/${tenantId}/${mainLanguage}/putText`, dataToBeSent).then(()=>{

@@ -9,11 +9,11 @@ import displayOnePendingTranslation from '../functions/displayOnePendingTranslat
 import EmptyModal from "../components/modals/EmptyModal";
 import NewFolderModal from "../components/modals/NewFolderModal";
 import NewContentModal from "../components/modals/NewContentModal";
-import { getData } from "../functions/globals/axiosFunction";
+import { deleteData, getData, putData } from "../functions/globals/axiosFunction";
 import LanguagePicker from "../components/LanguagePicker";
 export default function AdminView()
 {
-    const [pending, setPending] = useState<string[]>([]);  //string[] id delle traduzioni da controllare
+    const [pending, setPending] = useState<any[]>();
     const [languages, setLanguages] = useState<string[]>([]);
     const [workingLanguage, setWorkingLanguage] = useState<string>('');
     const [visibleModal, setVisibleModal] = useState<boolean>(false);
@@ -40,7 +40,6 @@ export default function AdminView()
                 setLanguages(res.data.tenant.languages.filter((language : any) => {
                 return language !== res.data.tenant.mainlang;
                 }));
-                console.log(res.data.tenant);
                 setWorkingLanguage(res.data.tenant.languages.filter((language : any) => {
                     return language !== res.data.tenant.mainlang;
                     })[0]);
@@ -48,16 +47,19 @@ export default function AdminView()
             .catch((err : any)=>{
                 console.log(err);
             });
-            console.log(languages);
         })();
 
     }, [])
 
     useEffect(()=>{
         if(workingLanguage !== ''){
-            getData(`http://localhost:3000/dev/tenant1/untraslated/${workingLanguage}`)
+            console.log(workingLanguage);
+            getData(`http://localhost:3000/dev/tenant1/${workingLanguage}/Text`)
             .then((res : any) =>{
-                setPending(res.data.texts);
+                if(res.data.data.texts){
+                let aux = res.data.data.texts.filter((text : any) => text.review === true);
+                setPending(aux);
+                }
             })
             .catch((err : any)=>{
                 console.log(err);
@@ -74,8 +76,21 @@ export default function AdminView()
     }
 
     const handleLanguageChange = (e : any) => {
-        console.log(e.target.value);
         setWorkingLanguage(e.target.value);
+    }
+
+    const acceptTranslation = () =>{
+        if(pending){
+            pending[0].review = false;
+            putData(`http://localhost:3000/dev/${tenantId}/${workingLanguage}/putText`, pending[0]).then(()=>{pending.shift()})
+        }
+    }
+
+    const discardTranslation = () =>{
+        if(pending){
+            pending[0].review = false;
+            deleteData(`http://localhost:3000/dev/${tenantId}/${workingLanguage}/${pending[0].key}/${pending[0].group}/removeTranslationText`).then(()=>{pending.shift()})
+        }
     }
 
 
@@ -94,17 +109,23 @@ export default function AdminView()
                     <Grid container rowSpacing={3}>
                         <Grid item xs={12} sm={12}>
                             <Card sx={{bgcolor:'primary.main'}}>
+                                {pending && pending.length!==0 ?                                
                                 <CardActionArea onClick={() => setVisibleModal(true)}>
                                     <CardContent>
                                         <Typography variant="h5">
-                                        {pending ?                                            
-                                            <span style={{color:'white'}}>Review {` ${pending.length} `} pending translations</span>                                            
-                                            :
-                                            <span style={{color:'white'}}> There is no pending translation to review for this language</span>
-                                        }
+                                            <span style={{color:'white'}}>Review {` ${pending.length} `} pending translations</span>                                                                                                                                    
                                         </Typography>
                                     </CardContent>
                                 </CardActionArea>
+                                : 
+                                <CardActionArea onClick={() => null}>
+                                <CardContent>
+                                    <Typography variant="h5">
+                                        <span style={{color:'white'}}> There is no pending translation to review for this language</span>
+                                    </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                                }
                             </Card>
                         </Grid>
                         <Grid item xs={12} sm={12}>
@@ -133,7 +154,7 @@ export default function AdminView()
                     </Link>
                 </Grid>
             </Grid>
-            <EmptyModal open={visibleModal} closeModal={closeModal} openModal={openModal} specificModal={<PendingTranslationsModal closeModal={closeModal} openModal={openModal} translations={pending}/>}></EmptyModal>
+            {pending && pending.length!==0  ? <EmptyModal open={visibleModal} closeModal={closeModal} openModal={openModal} specificModal={<PendingTranslationsModal translationToBeReviewed={pending[0] ? pending[0] : null} closeModal={closeModal} openModal={openModal} acceptTranslation={acceptTranslation} discardTranslation={discardTranslation}/>}></EmptyModal> : <></>}
         </div>
     )
 }

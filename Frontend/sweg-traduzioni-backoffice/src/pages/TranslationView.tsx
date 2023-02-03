@@ -53,6 +53,7 @@ export default function TranslationView(){
             text,
             key : translationId,
             group : data.group,
+            review : true,
         }
 
         if(text != ''){
