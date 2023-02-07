@@ -18,6 +18,18 @@ AWS Access Key ID [****************MHOV]: DEFAULT_ACCESS_KEY (da inserire)
 AWS Secret Access Key [****************2t63]: DEFAULT_SECRET (da inserire)
 Default region name [us-east-1]: us-east-1 (da inserire)
 Default output format [None]: (dare Invio)
+- per installare jest per il testing
+```
+npm install --save-dev jest
+npm install --save-dev @types/jest
+npm install --save-dev ts-jest
+npm install --save-dev supertest
+```
+- questo da aggiungere ai file di configurazione [https://plainenglish.io/blog/beginners-guide-to-testing-jest-with-node-typescript]
+- per eseguire i test che sono integration test fai partire il serverless poi esegui in un nuovo terminale
+```
+- npm run test 
+```
 
 ### Frontend
 Dentro la cartella Frontend
