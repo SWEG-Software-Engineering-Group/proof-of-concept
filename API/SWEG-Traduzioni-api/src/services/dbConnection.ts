@@ -1,13 +1,6 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import {
-    DeleteCommand,
     DynamoDBDocumentClient,
-    GetCommand,
-    GetCommandInput,
-    PutCommand,
-    ScanCommand,
-    ScanCommandInput,
-    UpdateCommand,
 } from "@aws-sdk/lib-dynamodb";
 
 //per eseguire in offline
@@ -21,7 +14,12 @@ if (process.env.IS_OFFLINE) {
         secretAccessKey: 'DEFAULT_SECRET' // needed if you don't have aws credentials at all in env
     }
 } else {
-
+    options = {
+        region: "localhost",
+        endpoint: "http://localhost:8000",
+        accessKeyId: 'DEFAULT_ACCESS_KEY',
+        secretAccessKey: 'DEFAULT_SECRET'
+    }
 }
 // Create an Amazon DynamoDB service client object.
 export const ddbClient = new DynamoDBClient(options);
@@ -46,4 +44,4 @@ const ddbDocClient = DynamoDBDocumentClient.from(ddbClient, {
     unmarshallOptions,
 });
 //class for connecting and doitg operations on the db
-export {ddbDocClient};
+export { ddbDocClient };

@@ -12513,7 +12513,7 @@ var require_ScanCommand = __commonJS({
     var smithy_client_1 = require_dist_cjs7();
     var models_0_1 = require_models_0();
     var Aws_json1_0_1 = require_Aws_json1_0();
-    var ScanCommand4 = class extends smithy_client_1.Command {
+    var ScanCommand3 = class extends smithy_client_1.Command {
       constructor(input) {
         super();
         this.input = input;
@@ -12528,7 +12528,7 @@ var require_ScanCommand = __commonJS({
       }
       resolveMiddleware(clientStack, configuration, options2) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, ScanCommand4.getEndpointParameterInstructions()));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, ScanCommand3.getEndpointParameterInstructions()));
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
         const clientName = "DynamoDBClient";
@@ -12550,7 +12550,7 @@ var require_ScanCommand = __commonJS({
         return (0, Aws_json1_0_1.deserializeAws_json1_0ScanCommand)(output, context);
       }
     };
-    exports.ScanCommand = ScanCommand4;
+    exports.ScanCommand = ScanCommand3;
   }
 });
 
@@ -31157,7 +31157,7 @@ var require_DeleteCommand = __commonJS({
     exports.DeleteCommand = void 0;
     var client_dynamodb_1 = require_dist_cjs53();
     var DynamoDBDocumentClientCommand_1 = require_DynamoDBDocumentClientCommand();
-    var DeleteCommand4 = class extends DynamoDBDocumentClientCommand_1.DynamoDBDocumentClientCommand {
+    var DeleteCommand3 = class extends DynamoDBDocumentClientCommand_1.DynamoDBDocumentClientCommand {
       constructor(input) {
         super();
         this.input = input;
@@ -31185,7 +31185,7 @@ var require_DeleteCommand = __commonJS({
         return async () => handler(this.clientCommand);
       }
     };
-    exports.DeleteCommand = DeleteCommand4;
+    exports.DeleteCommand = DeleteCommand3;
   }
 });
 
@@ -31253,7 +31253,7 @@ var require_GetCommand = __commonJS({
     exports.GetCommand = void 0;
     var client_dynamodb_1 = require_dist_cjs53();
     var DynamoDBDocumentClientCommand_1 = require_DynamoDBDocumentClientCommand();
-    var GetCommand4 = class extends DynamoDBDocumentClientCommand_1.DynamoDBDocumentClientCommand {
+    var GetCommand3 = class extends DynamoDBDocumentClientCommand_1.DynamoDBDocumentClientCommand {
       constructor(input) {
         super();
         this.input = input;
@@ -31269,7 +31269,7 @@ var require_GetCommand = __commonJS({
         return async () => handler(this.clientCommand);
       }
     };
-    exports.GetCommand = GetCommand4;
+    exports.GetCommand = GetCommand3;
   }
 });
 
@@ -31281,7 +31281,7 @@ var require_PutCommand = __commonJS({
     exports.PutCommand = void 0;
     var client_dynamodb_1 = require_dist_cjs53();
     var DynamoDBDocumentClientCommand_1 = require_DynamoDBDocumentClientCommand();
-    var PutCommand4 = class extends DynamoDBDocumentClientCommand_1.DynamoDBDocumentClientCommand {
+    var PutCommand3 = class extends DynamoDBDocumentClientCommand_1.DynamoDBDocumentClientCommand {
       constructor(input) {
         super();
         this.input = input;
@@ -31309,7 +31309,7 @@ var require_PutCommand = __commonJS({
         return async () => handler(this.clientCommand);
       }
     };
-    exports.PutCommand = PutCommand4;
+    exports.PutCommand = PutCommand3;
   }
 });
 
@@ -31364,7 +31364,7 @@ var require_ScanCommand2 = __commonJS({
     exports.ScanCommand = void 0;
     var client_dynamodb_1 = require_dist_cjs53();
     var DynamoDBDocumentClientCommand_1 = require_DynamoDBDocumentClientCommand();
-    var ScanCommand4 = class extends DynamoDBDocumentClientCommand_1.DynamoDBDocumentClientCommand {
+    var ScanCommand3 = class extends DynamoDBDocumentClientCommand_1.DynamoDBDocumentClientCommand {
       constructor(input) {
         super();
         this.input = input;
@@ -31389,7 +31389,7 @@ var require_ScanCommand2 = __commonJS({
         return async () => handler(this.clientCommand);
       }
     };
-    exports.ScanCommand = ScanCommand4;
+    exports.ScanCommand = ScanCommand3;
   }
 });
 
@@ -31474,7 +31474,7 @@ var require_UpdateCommand = __commonJS({
     exports.UpdateCommand = void 0;
     var client_dynamodb_1 = require_dist_cjs53();
     var DynamoDBDocumentClientCommand_1 = require_DynamoDBDocumentClientCommand();
-    var UpdateCommand4 = class extends DynamoDBDocumentClientCommand_1.DynamoDBDocumentClientCommand {
+    var UpdateCommand3 = class extends DynamoDBDocumentClientCommand_1.DynamoDBDocumentClientCommand {
       constructor(input) {
         super();
         this.input = input;
@@ -31508,7 +31508,7 @@ var require_UpdateCommand = __commonJS({
         return async () => handler(this.clientCommand);
       }
     };
-    exports.UpdateCommand = UpdateCommand4;
+    exports.UpdateCommand = UpdateCommand3;
   }
 });
 
@@ -32257,6 +32257,12 @@ if (process.env.IS_OFFLINE) {
     secretAccessKey: "DEFAULT_SECRET"
   };
 } else {
+  options = {
+    region: "localhost",
+    endpoint: "http://localhost:8000",
+    accessKeyId: "DEFAULT_ACCESS_KEY",
+    secretAccessKey: "DEFAULT_SECRET"
+  };
 }
 var ddbClient = new import_client_dynamodb.DynamoDBClient(options);
 var marshallOptions = {
