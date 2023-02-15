@@ -5,11 +5,12 @@
 
 ### Backend
 Dentro la cartella API
+```
 - cd SWEG-Traduzioni-api
 - npm i -g serverless 
 - serverless dynamodb install (Per Linux - sls dynamodb install)
 - npm i (per installare tutto)
-
+```
 - Scaricare AWS CLI se non installato: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 (Per Linux - sudo apt install awscli)
 
@@ -33,15 +34,16 @@ npm install --save-dev supertest
 
 ### Frontend
 Dentro la cartella Frontend
+```
 - cd sweg-traduzioni-backoffice
 - npm i
-
+```
 
 Per runnare tutto:
 (Backend)
-- Da dentro API/SWEG-Traduzioni-api : serverless offline start
+- Da dentro API/SWEG-Traduzioni-api :``` serverless offline start```
 (Frontend)
-- Da dentro Frontend : npm start
+- Da dentro Frontend : ```npm start```
 
 
 La parte Backend si apre da sola sulla porta 3000 quindi node per il Frontend chiederà di aprirsi su un'altra porta (perché sulla 3000 sta già aperto Serverless) 
