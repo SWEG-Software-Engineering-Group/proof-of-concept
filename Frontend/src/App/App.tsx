@@ -1,6 +1,5 @@
 import React from 'react';
 import logo from '../assets/images/logo.svg';
-import '../assets/css/App.css';
 import { Button, createTheme ,ThemeProvider } from '@mui/material';
 import Router from './Router';
 import { Box } from '@mui/system';

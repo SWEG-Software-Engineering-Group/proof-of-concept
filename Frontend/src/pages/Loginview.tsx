@@ -1,5 +1,4 @@
 import logo from '../assets/images/logo.svg';
-import '../assets/css/App.css';
 import { Button, Card, CardContent, createTheme ,FilledInput,Grid,InputLabel,TextField,ThemeProvider, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import {useState} from "react";
