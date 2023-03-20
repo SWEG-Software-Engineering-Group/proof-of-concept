@@ -21,7 +21,8 @@ import {
   dbDeleteUser,
   gettenants
 }
-  from '@functions/index'; import { environment } from 'src/environement/environement';
+  from '@functions/index';
+import { environment } from 'src/environement/environement';
 
 
 const serverlessConfiguration: AWS = {

@@ -1,5 +1,5 @@
 import { GetCommand, GetCommandInput, PutCommand } from "@aws-sdk/lib-dynamodb";
-import { environment } from "..//environement/environement";
+import { environment } from "../environement/environement";
 import { Tenant } from "../types/Tenant";
 import { ddbDocClient } from "./dbConnection";
 
